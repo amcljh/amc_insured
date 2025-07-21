@@ -1,0 +1,32 @@
+---
+alwaysApply: true
+---
+
+## Project description
+This project is boilerplate code to implement landing website. 
+
+## Top priorities
+- Do not fix files on the app directory because this project is boilerplate for landing project.
+- Do not add page on the app directory because this website has to be had only one page, main page.
+- If each component has many style constants, export style.ts file on the same directory. For example, if ActionButton/ActionButton.tsx has more than 5 style code in component file, then make ActionButton/style.ts file and export those styles.
+
+## Directory structure
+- **app/**: Next.js App Router directory - contains main pages, layouts, and global styles
+- **components/**: Reusable UI components
+  - ActionButton, Brand, Calendar, Checkbox, CloseButton and other basic UI components
+  - Heading (H1, H2, H3), Media, Menu, Modal, Nav and other layout components
+  - Photo, Popup, Radio, Skeleton, Table, Textarea, TextInput and other form/data components
+- **sections/**: Major page section components
+  - Carousel, Contact, Description, Earth, Grid, Hero and other landing page sections
+  - HorizontalScroll, Partners, People, Video, Vision and other content sections
+- **hocs/**: Higher-Order Components for analytics and tracking features
+  - GA Event, Heatmap, Pixel Event, Tag Manager wrappers
+- **styles/**: Style-related utilities and configurations
+- **public/**: Static asset files
+- Root level: Next.js configuration files (next.config.ts, package.json, tsconfig.json, etc.)
+
+## Public assets
+- public/brand/logo.png: Brand main logo for every theme scenario.
+- public/brand/logo_invert.png: Brand main logo for dark mode theme.
+- public/audio: Audio source for background music or sound effects.
+- public/font: If necessary, font file will be located.

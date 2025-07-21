@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landing Website Boilerplate
+
+This project is boilerplate code to implement a landing website built with Next.js and TypeScript.
+
+## Features
+
+- 🎨 Modern and responsive design
+- 🧱 Reusable UI components (Buttons, Navigation, Brand, etc.)
+- 📱 Mobile-first approach
+- 🌙 Conditional dark mode support
+- ⚡ Next.js App Router
+- 🎯 TypeScript for type safety
+- 💅 Tailwind CSS for styling
+
+## Environment Configuration
+
+### Dark Mode Support
+
+The application supports conditional dark mode rendering based on an environment variable:
+
+```bash
+# .env.local
+NEXT_PUBLIC_IS_SUPPORT_DARKMODE=true
+```
+
+**Options:**
+- `true` - Enables dark mode support with automatic theme switching
+- `false` - Disables dark mode features, uses only light theme
+
+**Affected Components:**
+- Brand component (logo variants)
+- Navigation components (theme-aware styling)
+- Text colors and contrasts
+
+### Logo Assets
+
+When dark mode is enabled, the Brand component automatically uses:
+- Light theme: `/public/brand/logo.png`
+- Dark theme: `/public/brand/logo_invert.png`
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables in `.env.local`
+4. Run the development server: `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project Structure
+
+- **app/**: Next.js App Router directory
+- **components/**: Reusable UI components
+  - Button components (ActionButton, SecondaryButton, CloseButton)
+  - Brand component with theme support
+  - Navigation components (Gnb, Aside, Footer)
+- **sections/**: Landing page section components
+- **hocs/**: Higher-Order Components for analytics
+- **styles/**: Style utilities and configurations
+- **public/**: Static assets including brand logos
+
+## Component Usage
+
+### Brand Component
+
+```typescript
+import { Brand } from '@/components';
+
+// Basic usage (respects environment variable)
+<Brand brandName="My Company" />
+
+// With custom logos
+<Brand 
+  brandName="My Company"
+  logoSrc="/custom-logo.png"
+  logoSrcDark="/custom-logo-dark.png"
+  theme="auto" // Only works if NEXT_PUBLIC_IS_SUPPORT_DARKMODE=true
+/>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Navigation Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```typescript
+import { Gnb, Aside, Footer } from '@/components';
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+// Global Navigation Bar with Brand
+<Gnb
+  brandProps={{
+    brandName: 'My Company',
+    theme: 'auto' // Conditional on environment variable
+  }}
+  navLinks={links}
+  ctaText="Get Started"
+/>
+```
 
-## Learn More
+## Development Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Do not modify files in the `app/` directory as this is boilerplate code
+- This website is designed to be a single-page application
+- All UI components are client-side components for interactivity
+- Dark mode features are conditionally rendered based on environment configuration 
