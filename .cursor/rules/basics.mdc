@@ -6,8 +6,8 @@ alwaysApply: true
 This project is boilerplate code to implement landing website. 
 
 ## Top priorities
-- Do not fix files on the app directory because this project is boilerplate for landing project.
-- Do not add page on the app directory because this website has to be had only one page, main page.
+<!-- - Do not fix files on the app directory because this project is boilerplate for landing project.
+- Do not add page on the app directory because this website has to be had only one page, main page. -->
 - If each component has many style constants, export style.ts file on the same directory. For example, if ActionButton/ActionButton.tsx has more than 5 style code in component file, then make ActionButton/style.ts file and export those styles.
 
 ## Directory structure

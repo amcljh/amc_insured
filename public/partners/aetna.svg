@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="currentColor">
+  <rect width="200" height="80" fill="none"/>
+  <g transform="translate(20, 20)">
+    <path d="M15 10 C15 5, 20 5, 20 10 C20 5, 25 5, 25 10 L25 20 L15 20 Z" fill="#7b2cbf"/>
+    <path d="M30 12 L45 12 L45 17 L30 17 Z" fill="#7b2cbf"/>
+    <text x="50" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#7b2cbf">Aetna</text>
+    <text x="10" y="40" font-family="Arial, sans-serif" font-size="10" fill="#666">Health Benefits</text>
+  </g>
+</svg> 

@@ -45,7 +45,7 @@ export const brandStyles = {
   // Common styles
   common: {
     logo: 'object-contain',
-    defaultLogoBackground: 'bg-blue-600 rounded-full flex items-center justify-center',
+    defaultLogoBackground: 'bg-[#03418a] rounded-full flex items-center justify-center',
     defaultLogoText: 'text-white font-bold text-sm',
     textContainer: 'flex flex-col',
     textPrimary: 'font-bold',

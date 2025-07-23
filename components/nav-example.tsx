@@ -147,7 +147,7 @@ export const NavExample: React.FC = () => {
               
               <button
                 onClick={() => setIsAsideOpen(true)}
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#03418a] hover:bg-[#052b6b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#03418a]"
               >
                 Open Sidebar
               </button>

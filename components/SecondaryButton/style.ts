@@ -2,8 +2,8 @@ export const secondaryButtonStyles = {
   base: 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
   
   variants: {
-    outline: 'border-2 border-gray-300 text-gray-700 bg-transparent hover:bg-gray-50 focus:ring-gray-500 hover:border-gray-400',
-    ghost: 'text-gray-700 bg-transparent hover:bg-gray-100 focus:ring-gray-500',
+    outline: 'border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/50 focus:ring-white/50 transition-all duration-200',
+    ghost: 'text-white bg-black/20 backdrop-blur-sm hover:bg-black/30 focus:ring-white/50 transition-all duration-200',
   },
   
   sizes: {

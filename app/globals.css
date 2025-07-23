@@ -19,7 +19,21 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans);
+  font-family: "GT America", "source-han-sans-simplified-c", sans-serif;
+}
+
+/* Heading fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Times New Roman", "Times", serif;
+}
+
+/* Custom font utility classes */
+.font-serif-title {
+  font-family: "Times New Roman", "Times", serif;
+}
+
+.font-body {
+  font-family: "GT America", "source-han-sans-simplified-c", sans-serif;
 }
 
 [inert], [inert] * {
