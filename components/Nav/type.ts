@@ -6,6 +6,7 @@ export interface NavLink {
   label: string;
   href: string;
   isExternal?: boolean;
+  onClick?: () => void;
 }
 
 // Social Media Link Interface

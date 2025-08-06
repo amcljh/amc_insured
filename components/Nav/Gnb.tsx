@@ -14,7 +14,7 @@ const useScrollDirection = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY > prevScrollY && currentScrollY > 100) {
         // Scrolling down and past 100px
         setScrollDirection('down');
@@ -22,7 +22,7 @@ const useScrollDirection = () => {
         // Scrolling up
         setScrollDirection('up');
       }
-      
+
       setPrevScrollY(currentScrollY);
     };
 
@@ -36,7 +36,7 @@ const useScrollDirection = () => {
 export const Gnb: React.FC<GnbProps> = ({
   brandProps = { brandName: 'Logo', href: '/' },
   navLinks = [],
-  ctaText = 'Get Started',
+  ctaText,
   ctaHref,
   onCTAClick,
   className = '',
@@ -66,46 +66,46 @@ export const Gnb: React.FC<GnbProps> = ({
   // Enhanced smooth scroll function
   const handleSmoothScroll = async (href: string, e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     if (href.startsWith('#')) {
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
-      
+
       if (targetElement) {
         const offsetTop = targetElement.offsetTop - 80; // Account for fixed nav height
-        
+
         // Close mobile menu first if open
         if (isMobileMenuOpen) {
           toggleMobileMenu();
           // Wait for mobile menu animation to complete
           await new Promise(resolve => setTimeout(resolve, 300));
         }
-        
+
         // Smooth scroll with easing
         const startPosition = window.pageYOffset;
         const distance = offsetTop - startPosition;
         const duration = Math.min(Math.abs(distance) / 2, 1000); // Max 1s duration
-        
+
         let startTime: number | null = null;
-        
+
         const animateScroll = (currentTime: number) => {
           if (startTime === null) startTime = currentTime;
           const timeElapsed = currentTime - startTime;
           const progress = Math.min(timeElapsed / duration, 1);
-          
+
           // Easing function (ease-in-out-cubic)
           const easeInOutCubic = progress < 0.5
             ? 4 * progress * progress * progress
             : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-          
+
           const currentPosition = startPosition + (distance * easeInOutCubic);
           window.scrollTo(0, currentPosition);
-          
+
           if (progress < 1) {
             requestAnimationFrame(animateScroll);
           }
         };
-        
+
         requestAnimationFrame(animateScroll);
       }
     } else {
@@ -115,19 +115,19 @@ export const Gnb: React.FC<GnbProps> = ({
   };
 
   return (
-    <nav 
+    <nav
       className={`
         fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out
-        ${scrollDirection === 'down' 
-          ? '-translate-y-full bg-transparent' 
+        ${scrollDirection === 'down'
+          ? '-translate-y-full bg-transparent'
           : 'translate-y-0'
         }
-        ${scrollDirection === 'up' && isScrolled 
-          ? 'bg-black shadow-lg' 
+        ${scrollDirection === 'up' && isScrolled
+          ? 'bg-black shadow-lg'
           : 'bg-transparent'
         }
         ${className}
-      `} 
+      `}
       {...props}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,7 +140,7 @@ export const Gnb: React.FC<GnbProps> = ({
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className={`hidden md:block ${!ctaText ? 'ml-auto' : ''}`}>
             <div className="ml-10 flex items-baseline space-x-4">
               {navLinks.map((link, index) => (
                 <a
@@ -148,7 +148,7 @@ export const Gnb: React.FC<GnbProps> = ({
                   href={link.href}
                   target={link.isExternal ? '_blank' : '_self'}
                   rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                  onClick={link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
+                  onClick={link.onClick ? link.onClick : link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
                   className={`
                     px-3 py-2 rounded-md text-sm font-medium transition-all duration-200
                     text-white hover:text-gray-200 cursor-pointer
@@ -163,18 +163,18 @@ export const Gnb: React.FC<GnbProps> = ({
 
           {/* CTA Button & Mobile menu button */}
           <div className="flex items-center space-x-4">
-                          <ActionButton
-                variant="primary"
-                size="sm"
-                onClick={handleCTAClick}
-                className={`
+            {ctaText && <ActionButton
+              variant="primary"
+              size="sm"
+              onClick={handleCTAClick}
+              className={`
                   hidden sm:inline-flex transition-all duration-200
                   !bg-white !text-[#03418a] hover:!bg-gray-100 hover:!text-[#052b6b]
                   border-0 font-medium hover:scale-105
                 `}
             >
               {ctaText}
-            </ActionButton>
+            </ActionButton>}
 
             {/* Mobile menu button */}
             <button
@@ -223,8 +223,8 @@ export const Gnb: React.FC<GnbProps> = ({
         {/* Mobile Navigation Menu */}
         <div className={`
           md:hidden transition-all duration-300 ease-in-out overflow-hidden
-          ${isMobileMenuOpen 
-            ? 'max-h-96 opacity-100' 
+          ${isMobileMenuOpen
+            ? 'max-h-96 opacity-100'
             : 'max-h-0 opacity-0'
           }
         `}>
@@ -247,14 +247,14 @@ export const Gnb: React.FC<GnbProps> = ({
                   text-white hover:text-gray-200 hover:bg-white/10 cursor-pointer
                   hover:scale-105 hover:translate-x-1
                 `}
-                style={{ 
+                style={{
                   transitionDelay: `${index * 50}ms`
                 }}
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-2" style={{ 
+            <div className="pt-2" style={{
               transitionDelay: `${navLinks.length * 50 + 100}ms`
             }}>
               <ActionButton

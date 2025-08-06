@@ -45,7 +45,7 @@ export const heroStyles = {
 
   // Content container
   content: {
-    wrapper: 'relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    wrapper: 'h-full z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2',
     container: 'flex flex-col justify-center min-h-full',
     maxWidth: 'max-w-4xl',
   },

@@ -43,8 +43,8 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   return (
-    <section 
-      className={`${heroStyles.container.base} ${heroStyles.container.withTopPadding} ${fullHeight ? heroStyles.container.fullHeight : heroStyles.container.normalHeight} ${className}`}
+    <section
+      className={`${heroStyles.container.base} ${fullHeight ? heroStyles.container.fullHeight : heroStyles.container.normalHeight} ${className}`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
       {...props}
     >
@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Background Overlay */}
       {(backgroundImage || backgroundVideo) && (
-        <div 
+        <div
           className={heroStyles.background.overlay}
           style={{ opacity: overlayOpacity }}
         />
@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Content */}
       <div className={heroStyles.content.wrapper}>
-        <div className={`${heroStyles.content.container} ${currentAlignment}`}>
+        <div className={`${heroStyles.content.container} ${currentAlignment} ${!primaryCTA && !secondaryCTA ? 'text-center items-center' : ''}`}>
           <div className={`${heroStyles.content.maxWidth} ${currentSize.spacing}`}>
             {/* Badge */}
             {badge && (
@@ -80,17 +80,17 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             )}
 
+            {/* Main Title */}
+            <h1 className={`${heroStyles.typography.title} ${currentSize.title}`}>
+              {title}
+            </h1>
+
             {/* Subtitle */}
             {subtitle && (
               <h2 className={`${heroStyles.typography.subtitle} ${currentSize.subtitle}`}>
                 {subtitle}
               </h2>
             )}
-
-            {/* Main Title */}
-            <h1 className={`${heroStyles.typography.title} ${currentSize.title}`}>
-              {title}
-            </h1>
 
             {/* Description */}
             {description && (
@@ -128,17 +128,17 @@ export const Hero: React.FC<HeroProps> = ({
               <div className={heroStyles.features.container}>
                 {features.map((feature, index) => (
                   <div key={index} className={heroStyles.features.item}>
-                    <svg 
-                      className={heroStyles.features.icon} 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
+                    <svg
+                      className={heroStyles.features.icon}
+                      fill="none"
+                      viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M5 13l4 4L19 7" 
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
                       />
                     </svg>
                     {feature}

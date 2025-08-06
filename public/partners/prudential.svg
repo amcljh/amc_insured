@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="currentColor">
-  <rect width="200" height="80" fill="none"/>
-  <g transform="translate(20, 20)">
-    <circle cx="15" cy="15" r="10" fill="#003d7a"/>
-    <path d="M30 5 L50 5 L50 10 L30 10 Z" fill="#003d7a"/>
-    <text x="55" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#003d7a">Prudential</text>
-    <text x="10" y="40" font-family="Arial, sans-serif" font-size="10" fill="#666">Financial Wellness</text>
-  </g>
-</svg> 
