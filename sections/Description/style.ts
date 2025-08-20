@@ -1,8 +1,8 @@
 export const descriptionStyles = {
   // Container styles
   container: {
-    base: 'py-16 lg:py-24',
-    wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    base: 'py-16 lg:py-24 relative overflow-hidden',
+    wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10',
   },
 
   // Background colors
@@ -16,6 +16,7 @@ export const descriptionStyles = {
   // Layout configurations
   layouts: {
     'text-only': 'flex flex-col',
+    'text-left': 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start',
     'image-left': 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center',
     'image-right': 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center',
     'image-top': 'flex flex-col space-y-12',
@@ -69,9 +70,11 @@ export const descriptionStyles = {
 
   // Media elements
   media: {
-    image: 'w-full h-auto rounded-lg shadow-lg',
-    video: 'w-full h-auto rounded-lg shadow-lg',
+    image: 'w-full h-auto rounded-lg shadow-lg relative',
+    video: 'w-full h-auto rounded-lg shadow-lg relative',
     icon: 'w-16 h-16 text-[#03418a] mb-6',
+    overlay: 'absolute inset-0 flex items-center justify-center',
+    overlayText: 'text-6xl lg:text-8xl font-black text-white/10 select-none pointer-events-none',
   },
 
   // Features grid
@@ -95,5 +98,22 @@ export const descriptionStyles = {
     imageSecond: 'order-2 lg:order-2',
     contentFirst: 'order-2 lg:order-1',
     contentSecond: 'order-1 lg:order-2',
+  },
+
+  // Background overlay text
+  backgroundOverlay: {
+    container: 'absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden',
+    text: 'text-8xl lg:text-9xl font-black text-gray-200/5 dark:text-gray-700/5',
+  },
+
+  // Animation variants
+  animation: {
+    container: 'opacity-0 translate-y-8',
+    title: 'opacity-0 translate-y-6',
+    subtitle: 'opacity-0 translate-y-4',
+    description: 'opacity-0 translate-y-4',
+    cta: 'opacity-0 translate-y-4',
+    media: 'opacity-0 scale-95',
+    features: 'opacity-0 translate-y-4',
   },
 } as const; 

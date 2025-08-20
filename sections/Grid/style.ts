@@ -21,7 +21,7 @@ export const gridStyles = {
       center: 'text-center mx-auto max-w-3xl',
       right: 'text-right',
     },
-    title: 'text-3xl lg:text-4xl font-bold tracking-tight',
+    title: 'text-3xl lg:text-4xl font-bold tracking-tight mb-2',
     titleLight: 'text-gray-900',
     titleDark: 'text-white',
     subtitle: 'text-xl lg:text-2xl font-medium mb-4',

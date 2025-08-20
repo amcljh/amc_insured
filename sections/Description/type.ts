@@ -13,7 +13,7 @@ export interface DescriptionProps extends HTMLAttributes<HTMLElement> {
   icon?: React.ReactNode;
   
   // Layout options
-  layout?: 'text-only' | 'image-left' | 'image-right' | 'image-top' | 'image-bottom';
+  layout?: 'text-only' | 'text-left' | 'image-left' | 'image-right' | 'image-top' | 'image-bottom';
   alignment?: 'left' | 'center' | 'right';
   size?: 'sm' | 'md' | 'lg';
   
@@ -33,4 +33,8 @@ export interface DescriptionProps extends HTMLAttributes<HTMLElement> {
   
   // Styling options
   backgroundColor?: 'white' | 'gray' | 'dark' | 'transparent';
+  
+  // Overlay text options
+  backgroundOverlayText?: string;
+  mediaOverlayText?: string;
 }

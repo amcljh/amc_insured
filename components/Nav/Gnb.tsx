@@ -6,33 +6,6 @@ import { ActionButton } from '../ActionButton/ActionButton';
 import { Brand } from '../Brand/Brand';
 import { useToggle } from 'usehankook';
 
-// Custom hook for scroll direction detection
-const useScrollDirection = () => {
-  const [scrollDirection, setScrollDirection] = useState('up');
-  const [prevScrollY, setPrevScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > prevScrollY && currentScrollY > 100) {
-        // Scrolling down and past 100px
-        setScrollDirection('down');
-      } else if (currentScrollY < prevScrollY) {
-        // Scrolling up
-        setScrollDirection('up');
-      }
-
-      setPrevScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollY]);
-
-  return scrollDirection;
-};
-
 export const Gnb: React.FC<GnbProps> = ({
   brandProps = { brandName: 'Logo', href: '/' },
   navLinks = [],
@@ -43,7 +16,6 @@ export const Gnb: React.FC<GnbProps> = ({
   ...props
 }) => {
   const [isMobileMenuOpen, toggleMobileMenu] = useToggle(false);
-  const scrollDirection = useScrollDirection();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -117,15 +89,7 @@ export const Gnb: React.FC<GnbProps> = ({
   return (
     <nav
       className={`
-        fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out
-        ${scrollDirection === 'down'
-          ? '-translate-y-full bg-transparent'
-          : 'translate-y-0'
-        }
-        ${scrollDirection === 'up' && isScrolled
-          ? 'bg-black shadow-lg'
-          : 'bg-transparent'
-        }
+        fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out bg-white shadow-lg
         ${className}
       `}
       {...props}
@@ -134,7 +98,7 @@ export const Gnb: React.FC<GnbProps> = ({
         <div className="flex justify-between items-center h-16">
           {/* Brand */}
           <div className="flex-shrink-0">
-            <div className="[&_*]:!text-white [&_*]:!font-medium">
+            <div className="[&_*]:!text-black [&_*]:!font-medium">
               <Brand {...brandProps} />
             </div>
           </div>
@@ -151,8 +115,8 @@ export const Gnb: React.FC<GnbProps> = ({
                   onClick={link.onClick ? link.onClick : link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
                   className={`
                     px-3 py-2 rounded-md text-sm font-medium transition-all duration-200
-                    text-white hover:text-gray-200 cursor-pointer
-                    hover:bg-white/10 hover:scale-105
+                    text-black hover:text-gray-700 cursor-pointer
+                    hover:bg-gray-100 hover:scale-105
                   `}
                 >
                   {link.label}

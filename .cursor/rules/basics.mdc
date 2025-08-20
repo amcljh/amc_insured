@@ -30,3 +30,6 @@ This project is boilerplate code to implement landing website.
 - public/brand/logo_invert.png: Brand main logo for dark mode theme.
 - public/audio: Audio source for background music or sound effects.
 - public/font: If necessary, font file will be located.
+
+## Animation
+- Use motion/react module for animation. Not framer-motion. motion/react module is newest version of framer-motion.

@@ -21,7 +21,7 @@ const insuranceServices: GridItem[] = [
     id: '1',
     title: 'Industry-Specific Insurance Solutions for Major Corporations in Korea',
     description: 'We provide insurance solutions specialized for various industries such as logistics, maritime, and construction, offering customized services to leading Korean corporations. We effectively manage the complex risks faced by these large companies through risk analysis and optimized insurance programs tailored to each industry.',
-    image: 'https://images.unsplash.com/photo-1516475429286-465d8cce838a?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '2',
@@ -244,7 +244,7 @@ export default function Home() {
         brandProps={{
           brandName: 'AMC',
           tagline: 'Risk Solutions',
-          size: 'md',
+          size: 'lg',
           href: '/',
           logoSrc: '/brand/logo.png',
           logoSrcDark: '/brand/logo_invert.png',
@@ -265,10 +265,13 @@ export default function Home() {
       <Hero
         // badge="Trusted Since 2010"
         subtitle="Rooted in expertise. Driven by action."
-        title="Powering Risk Solutions from Korea to the World."
+        title={[
+          "Powering Risk Solutions",
+          "from Korea to the World."
+        ]}
         description=""
-        backgroundImage="https://images.unsplash.com/photo-1710418512781-7899f2362f8a?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        overlayOpacity={0.1}
+        backgroundImage="https://images.unsplash.com/photo-1448523183439-d2ac62aca997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        overlayOpacity={0}
         size="lg"
       />
 
@@ -278,10 +281,9 @@ export default function Home() {
         subtitle="About Us"
         title="Korea-Born. Globally Focused. Relentlessly Driven."
         description="We connect risk with opportunity — and deliver results. AMC is a new-generation insurance brokerage firm based in Korea, rising fast through action, insight, and trust. We specialize in understanding the unique risk landscape of Korean companies — and turning that insight into winning solutions for both clients and the insurers or reinsurers who partner with us. Our business is built on speed, integrity, and deep local knowledge. That’s why more and more leading Korean companies are choosing AMC to protect what matters — and why global partners trust us to bridge risk with clarity."
-        layout="image-left"
-        image="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-        imageAlt="Insurance consultation meeting"
-        backgroundColor="dark"
+        layout="text-left"
+        backgroundOverlayText="About AMC"
+        mediaOverlayText="AMC"
       />
 
       {/* Services Section */}
@@ -293,7 +295,7 @@ export default function Home() {
         items={insuranceServices}
         columns={2}
         itemStyle="card"
-        backgroundColor="dark"
+        backgroundColor="white"
       />
 
       {/* Partners Section */}
@@ -316,7 +318,7 @@ export default function Home() {
         description="Smart, agile, and deeply attuned to client risk. AMC’s leadership team brings together a new generation of professionals who think fast, act faster, and never settle for one-size-fits-all solutions. We lead with insight, urgency, and a relentless focus on understanding each client’s unique risk — and responding with bold, customized strategies."
         people={executives}
         columns={3}
-        backgroundColor="dark"
+        backgroundColor="white"
         showSocials={true}
         layout="hero"
       />
@@ -327,10 +329,10 @@ export default function Home() {
         subtitle="Contact Us"
         mapEmbedUrl='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.427057929161!2d126.92806657568043!3d37.52142917205035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f3f088a1817%3A0x961b6248095e9a51!2z7ISc7Jq47Yq567OE7IucIOyYgeuTse2PrOq1rCDqta3soJzquIjsnLXroZwgNzA!5e0!3m2!1sde!2skr!4v1753161064706!5m2!1sko!2skr'
         title="Let’s Connect."
-        description="Whether you\'re a client, partner, or curious about AMC — we’re here. We welcome inquiries from across the world — whether you’re exploring a partnership, seeking insurance solutions, or just want to learn more about who we are and what we do. Use the form below to reach us directly, or feel free to contact us via email. You’ll hear back from someone who understands risk — and acts on it."
+        description="Whether you're a client, partner, or curious about AMC — we're here. We welcome inquiries from across the world — whether you're exploring a partnership, seeking insurance solutions, or just want to learn more about who we are and what we do. Use the form below to reach us directly, or feel free to contact us via email. You'll hear back from someone who understands risk — and acts on it."
         contactMethods={contactInfo}
         layout="side-by-side"
-        backgroundColor="dark"
+        backgroundColor="white"
         showForm={true}
         formFields={[
           { name: 'name', label: 'Full Name', type: 'text', required: true, placeholder: 'Your full name' },

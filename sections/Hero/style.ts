@@ -17,21 +17,21 @@ export const heroStyles = {
   // Size variations
   sizes: {
     sm: {
-      title: 'text-4xl lg:text-5xl',
-      subtitle: 'text-lg lg:text-xl',
-      description: 'text-base lg:text-lg',
+      title: 'text-5xl lg:text-6xl xl:text-7xl',
+      subtitle: 'text-xl lg:text-2xl xl:text-3xl',
+      description: 'text-lg lg:text-xl xl:text-2xl',
       spacing: 'space-y-6',
     },
     md: {
-      title: 'text-5xl lg:text-6xl xl:text-7xl',
-      subtitle: 'text-xl lg:text-2xl',
-      description: 'text-lg lg:text-xl',
+      title: 'text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl',
+      subtitle: 'text-2xl lg:text-3xl xl:text-4xl',
+      description: 'text-xl lg:text-2xl xl:text-3xl',
       spacing: 'space-y-8',
     },
     lg: {
-      title: 'text-6xl lg:text-7xl xl:text-8xl',
-      subtitle: 'text-2xl lg:text-3xl',
-      description: 'text-xl lg:text-2xl',
+      title: 'text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem]',
+      subtitle: 'text-3xl lg:text-4xl xl:text-5xl',
+      description: 'text-2xl lg:text-3xl xl:text-4xl',
       spacing: 'space-y-10',
     },
   },
@@ -52,9 +52,9 @@ export const heroStyles = {
 
   // Typography
   typography: {
-    title: 'font-bold tracking-tight text-white',
-    subtitle: 'font-medium text-gray-200',
-    description: 'text-gray-300 leading-relaxed',
+    title: 'font-black tracking-tighter text-white drop-shadow-2xl',
+    subtitle: 'font-bold text-white drop-shadow-xl tracking-tight',
+    description: 'text-white leading-relaxed drop-shadow-lg font-semibold',
     badge: 'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#f0f6ff] text-[#03418a] mb-6',
   },
 
@@ -69,7 +69,7 @@ export const heroStyles = {
   // Features list
   features: {
     container: 'flex flex-wrap gap-6 mt-8',
-    item: 'flex items-center text-gray-200',
-    icon: 'w-5 h-5 text-green-400 mr-2',
+    item: 'flex items-center text-white drop-shadow-lg',
+    icon: 'w-5 h-5 text-white mr-2 drop-shadow-lg',
   },
 } as const; 

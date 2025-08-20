@@ -53,8 +53,6 @@ export const Contact: React.FC<ContactProps> = ({
     transparent: 'bg-transparent',
   }[backgroundColor];
   
-  const isDark = backgroundColor === 'dark';
-
   const alignmentClass = {
     left: 'text-left',
     center: 'text-center',
@@ -72,19 +70,13 @@ export const Contact: React.FC<ContactProps> = ({
     <div className="space-y-8">
       <div className={alignmentClass}>
         {subtitle && (
-          <h3 className={`text-xl font-medium mb-4 ${
-          isDark ? 'text-[#0456b8]' : 'text-[#03418a]'
-        }`}>{subtitle}</h3>
+          <h3 className="text-xl font-medium mb-4 text-[#03418a]">{subtitle}</h3>
         )}
         {title && (
-          <h2 className={`text-3xl lg:text-4xl font-bold tracking-tight mb-6 ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>{title}</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-6 text-gray-900">{title}</h2>
         )}
         {description && (
-          <p className={`text-lg mb-8 ${
-            isDark ? 'text-gray-300' : 'text-gray-600'
-          }`}>{description}</p>
+          <p className="text-lg mb-8 text-gray-600">{description}</p>
         )}
       </div>
 
@@ -92,7 +84,7 @@ export const Contact: React.FC<ContactProps> = ({
         {contactMethods.map((method, index) => (
           <div key={index} className="flex items-start space-x-4">
             {method.icon && (
-                              <div className="flex-shrink-0 w-6 h-6 text-[#03418a] mt-1">
+              <div className="flex-shrink-0 w-6 h-6 text-[#03418a] mt-1">
                 {method.icon}
               </div>
             )}

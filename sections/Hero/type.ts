@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   // Main content
-  title: string;
+  title: string[];
   subtitle?: string;
   description?: string;
   

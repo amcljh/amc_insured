@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { HeroProps } from './type';
 import { heroStyles } from './style';
 import { ActionButton, SecondaryButton } from '../../components';
@@ -25,6 +26,80 @@ export const Hero: React.FC<HeroProps> = ({
   const currentSize = heroStyles.sizes[size];
   const currentAlignment = heroStyles.alignments[alignment];
   const buttonAlignment = heroStyles.buttons[`${alignment}Container` as keyof typeof heroStyles.buttons] || heroStyles.buttons.centerContainer;
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.0,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+        delay: 0.8, // title의 모든 줄이 나타난 후 시작
+      },
+    },
+  };
+
+  const badgeVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+        delay: 1.2, // subtitle 이후 시작
+      },
+    },
+  };
 
   const handlePrimaryCTA = () => {
     if (primaryCTA?.onClick) {
@@ -62,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({
       )}
 
       {/* Background Overlay */}
-      {(backgroundImage || backgroundVideo) && (
+      {(backgroundImage || backgroundVideo) && overlayOpacity > 0 && (
         <div
           className={heroStyles.background.overlay}
           style={{ opacity: overlayOpacity }}
@@ -71,37 +146,74 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Content */}
       <div className={heroStyles.content.wrapper}>
-        <div className={`${heroStyles.content.container} ${currentAlignment} ${!primaryCTA && !secondaryCTA ? 'text-center items-center' : ''}`}>
+        <motion.div 
+          className={`${heroStyles.content.container} ${currentAlignment} ${!primaryCTA && !secondaryCTA ? 'text-center items-center' : ''}`}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <div className={`${heroStyles.content.maxWidth} ${currentSize.spacing}`}>
             {/* Badge */}
             {badge && (
-              <div className={heroStyles.typography.badge}>
+              <motion.div 
+                className={heroStyles.typography.badge}
+                variants={badgeVariants}
+              >
                 {badge}
-              </div>
+              </motion.div>
             )}
 
             {/* Main Title */}
-            <h1 className={`${heroStyles.typography.title} ${currentSize.title}`}>
-              {title}
-            </h1>
+            <motion.div variants={titleVariants}>
+              {title.map((line, index) => (
+                <motion.div
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0, y: 60 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.6,
+                        ease: "easeOut" as const,
+                      },
+                    },
+                  }}
+                >
+                  <h1 className={`${heroStyles.typography.title} ${currentSize.title}`}>
+                    {line}
+                  </h1>
+                </motion.div>
+              ))}
+            </motion.div>
 
             {/* Subtitle */}
             {subtitle && (
-              <h2 className={`${heroStyles.typography.subtitle} ${currentSize.subtitle}`}>
+              <motion.h2 
+                className={`${heroStyles.typography.subtitle} ${currentSize.subtitle}`}
+                variants={subtitleVariants}
+              >
                 {subtitle}
-              </h2>
+              </motion.h2>
             )}
 
             {/* Description */}
             {description && (
-              <p className={`${heroStyles.typography.description} ${currentSize.description}`}>
+              <motion.p 
+                className={`${heroStyles.typography.description} ${currentSize.description}`}
+                variants={itemVariants}
+              >
                 {description}
-              </p>
+              </motion.p>
             )}
 
             {/* CTA Buttons */}
             {(primaryCTA || secondaryCTA) && (
-              <div className={`${heroStyles.buttons.container} ${buttonAlignment}`}>
+              <motion.div 
+                className={`${heroStyles.buttons.container} ${buttonAlignment}`}
+                variants={buttonVariants}
+              >
                 {primaryCTA && (
                   <ActionButton
                     variant="primary"
@@ -120,14 +232,22 @@ export const Hero: React.FC<HeroProps> = ({
                     {secondaryCTA.text}
                   </SecondaryButton>
                 )}
-              </div>
+              </motion.div>
             )}
 
             {/* Features List */}
             {features.length > 0 && (
-              <div className={heroStyles.features.container}>
+              <motion.div 
+                className={heroStyles.features.container}
+                variants={containerVariants}
+              >
                 {features.map((feature, index) => (
-                  <div key={index} className={heroStyles.features.item}>
+                  <motion.div 
+                    key={index} 
+                    className={heroStyles.features.item}
+                    variants={itemVariants}
+                    custom={index}
+                  >
                     <svg
                       className={heroStyles.features.icon}
                       fill="none"
@@ -142,12 +262,12 @@ export const Hero: React.FC<HeroProps> = ({
                       />
                     </svg>
                     {feature}
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { DescriptionProps } from './type';
 import { descriptionStyles } from './style';
 import { ActionButton } from '../../components';
@@ -20,6 +21,8 @@ export const Description: React.FC<DescriptionProps> = ({
   features = [],
   backgroundColor = 'white',
   className = '',
+  backgroundOverlayText,
+  mediaOverlayText,
   ...props
 }) => {
   const currentSize = descriptionStyles.sizes[size];
@@ -36,41 +39,181 @@ export const Description: React.FC<DescriptionProps> = ({
     }
   };
 
-  const renderContent = () => (
-    <div className={`${currentAlignment} ${currentSize.maxWidth} ${currentSize.spacing}`}>
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const mediaVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const renderContent = () => {
+    // text-left 레이아웃일 때는 강제로 좌측 정렬
+    const contentAlignment = layout === 'text-left' ? 'text-left' : currentAlignment;
+    
+    return (
+      <motion.div 
+        className={`${contentAlignment} ${currentSize.maxWidth} ${currentSize.spacing}`}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {/* Icon */}
+        {icon && (
+          <motion.div 
+            className={descriptionStyles.media.icon}
+            variants={itemVariants}
+          >
+            {icon}
+          </motion.div>
+        )}
+
+        {/* Subtitle */}
+        {subtitle && (
+          <motion.h3 
+            className={`${descriptionStyles.typography.subtitle} ${
+              isDark ? descriptionStyles.typography.subtitleDark : descriptionStyles.typography.subtitleLight
+            } ${currentSize.subtitle}`}
+            variants={itemVariants}
+          >
+            {subtitle}
+          </motion.h3>
+        )}
+
+        {/* Title */}
+        <motion.h2 
+          className={`${descriptionStyles.typography.title} ${
+            isDark ? descriptionStyles.typography.titleDark : descriptionStyles.typography.titleLight
+          } ${currentSize.title}`}
+          variants={itemVariants}
+        >
+          {title}
+        </motion.h2>
+
+        {/* Description */}
+        <motion.p 
+          className={`${descriptionStyles.typography.description} ${
+            isDark ? descriptionStyles.typography.descriptionDark : descriptionStyles.typography.descriptionLight
+          } ${currentSize.description}`}
+          variants={itemVariants}
+        >
+          {description}
+        </motion.p>
+
+        {/* CTA Button */}
+        {cta && (
+          <motion.div 
+            className="pt-4"
+            variants={itemVariants}
+          >
+            <ActionButton
+              variant="primary"
+              size="md"
+              onClick={handleCTA}
+            >
+              {cta.text}
+            </ActionButton>
+          </motion.div>
+        )}
+      </motion.div>
+    );
+  };
+
+  const renderLeftContent = () => (
+    <motion.div 
+      className="text-left space-y-6"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
       {/* Icon */}
       {icon && (
-        <div className={descriptionStyles.media.icon}>
+        <motion.div 
+          className={descriptionStyles.media.icon}
+          variants={itemVariants}
+        >
           {icon}
-        </div>
+        </motion.div>
       )}
 
       {/* Subtitle */}
       {subtitle && (
-        <h3 className={`${descriptionStyles.typography.subtitle} ${
-          isDark ? descriptionStyles.typography.subtitleDark : descriptionStyles.typography.subtitleLight
-        } ${currentSize.subtitle}`}>
+        <motion.h3 
+          className={`${descriptionStyles.typography.subtitle} ${
+            isDark ? descriptionStyles.typography.subtitleDark : descriptionStyles.typography.subtitleLight
+          } ${currentSize.subtitle}`}
+          variants={itemVariants}
+        >
           {subtitle}
-        </h3>
+        </motion.h3>
       )}
 
       {/* Title */}
-      <h2 className={`${descriptionStyles.typography.title} ${
-        isDark ? descriptionStyles.typography.titleDark : descriptionStyles.typography.titleLight
-      } ${currentSize.title}`}>
+      <motion.h2 
+        className={`${descriptionStyles.typography.title} ${
+          isDark ? descriptionStyles.typography.titleDark : descriptionStyles.typography.titleLight
+        } ${currentSize.title}`}
+        variants={itemVariants}
+      >
         {title}
-      </h2>
+      </motion.h2>
+    </motion.div>
+  );
 
+  const renderRightContent = () => (
+    <motion.div 
+      className="text-left space-y-6"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
       {/* Description */}
-      <p className={`${descriptionStyles.typography.description} ${
-        isDark ? descriptionStyles.typography.descriptionDark : descriptionStyles.typography.descriptionLight
-      } ${currentSize.description}`}>
+      <motion.p 
+        className={`${descriptionStyles.typography.description} ${
+          isDark ? descriptionStyles.typography.descriptionDark : descriptionStyles.typography.descriptionLight
+        } ${currentSize.description}`}
+        variants={itemVariants}
+      >
         {description}
-      </p>
+      </motion.p>
 
       {/* CTA Button */}
       {cta && (
-        <div className="pt-4">
+        <motion.div 
+          className="pt-4"
+          variants={itemVariants}
+        >
           <ActionButton
             variant="primary"
             size="md"
@@ -78,31 +221,61 @@ export const Description: React.FC<DescriptionProps> = ({
           >
             {cta.text}
           </ActionButton>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 
   const renderMedia = () => {
     if (video) {
       return (
-        <video 
-          controls
-          className={descriptionStyles.media.video}
-          poster={image}
+        <motion.div
+          className="relative"
+          variants={mediaVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <source src={video} type="video/mp4" />
-        </video>
+          <video 
+            controls
+            className={descriptionStyles.media.video}
+            poster={image}
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+          {mediaOverlayText && (
+            <div className={descriptionStyles.media.overlay}>
+              <span className={descriptionStyles.media.overlayText}>
+                {mediaOverlayText}
+              </span>
+            </div>
+          )}
+        </motion.div>
       );
     }
 
     if (image) {
       return (
-        <img
-          src={image}
-          alt={imageAlt}
-          className={descriptionStyles.media.image}
-        />
+        <motion.div
+          className="relative"
+          variants={mediaVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <img
+            src={image}
+            alt={imageAlt}
+            className={descriptionStyles.media.image}
+          />
+          {mediaOverlayText && (
+            <div className={descriptionStyles.media.overlay}>
+              <span className={descriptionStyles.media.overlayText}>
+                {mediaOverlayText}
+              </span>
+            </div>
+          )}
+        </motion.div>
       );
     }
 
@@ -113,6 +286,14 @@ export const Description: React.FC<DescriptionProps> = ({
     switch (layout) {
       case 'text-only':
         return renderContent();
+
+      case 'text-left':
+        return (
+          <>
+            {renderLeftContent()}
+            {renderRightContent()}
+          </>
+        );
 
       case 'image-left':
         return (
@@ -164,16 +345,41 @@ export const Description: React.FC<DescriptionProps> = ({
       className={`${descriptionStyles.container.base} ${background} ${className}`}
       {...props}
     >
-      <div className={descriptionStyles.container.wrapper}>
-        <div className={currentLayout}>
-          {renderLayoutContent()}
+      {/* Background Overlay Text */}
+      {backgroundOverlayText && (
+        <div className={descriptionStyles.backgroundOverlay.container}>
+          <span className={descriptionStyles.backgroundOverlay.text}>
+            {backgroundOverlayText}
+          </span>
         </div>
+      )}
+
+      <div className={descriptionStyles.container.wrapper}>
+        <motion.div 
+          className={currentLayout}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {renderLayoutContent()}
+        </motion.div>
 
         {/* Features */}
         {features.length > 0 && (
-          <div className={descriptionStyles.features.container}>
+          <motion.div 
+            className={descriptionStyles.features.container}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {features.map((feature, index) => (
-              <div key={index} className={descriptionStyles.features.item}>
+              <motion.div 
+                key={index} 
+                className={descriptionStyles.features.item}
+                variants={itemVariants}
+              >
                 {feature.icon && (
                   <div className={`${descriptionStyles.features.icon} ${
                     isDark ? descriptionStyles.features.iconDark : descriptionStyles.features.iconLight
@@ -191,9 +397,9 @@ export const Description: React.FC<DescriptionProps> = ({
                 }`}>
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
