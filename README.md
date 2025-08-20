@@ -1,6 +1,6 @@
-# Landing Website Boilerplate
+# AMC risk solution
 
-This project is boilerplate code to implement a landing website built with Next.js and TypeScript.
+This project is AMC risk solution landing website.
 
 ## Features
 
