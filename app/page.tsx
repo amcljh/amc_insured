@@ -249,7 +249,7 @@ export default function Home() {
           logoSrc: '/brand/logo.png',
           logoSrcDark: '/brand/logo_invert.png',
           logoAlt: 'AMC Logo',
-          theme: 'auto',
+          theme: 'light',
         }}
         navLinks={[
           { label: 'Home', href: '#', onClick: handleHomeClick },

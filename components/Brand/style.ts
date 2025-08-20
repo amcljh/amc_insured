@@ -18,7 +18,7 @@ export const brandStyles = {
     lg: {
       logo: 'w-[120px] h-12',
       text: 'text-xl font-bold',
-      tagline: 'text-sm',
+      tagline: 'text-sm font-bold',
       spacingHorizontal: 'space-x-4',
       spacingVertical: 'space-y-2',
     },

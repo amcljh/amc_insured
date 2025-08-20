@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-export interface HeroProps extends HTMLAttributes<HTMLElement> {
+export interface HeroProps {
   // Main content
   title: string[];
   subtitle?: string;
@@ -31,4 +31,8 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   // Additional content
   badge?: string;
   features?: string[];
+  
+  // HTML attributes
+  className?: string;
+  style?: React.CSSProperties;
 }

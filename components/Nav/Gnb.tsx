@@ -17,15 +17,52 @@ export const Gnb: React.FC<GnbProps> = ({
 }) => {
   const [isMobileMenuOpen, toggleMobileMenu] = useToggle(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // 섹션별 스크롤 위치 감지
+      const sections = navLinks
+        .filter(link => link.href.startsWith('#'))
+        .map(link => {
+          const id = link.href.substring(1);
+          const element = document.getElementById(id);
+          if (element) {
+            return {
+              id,
+              href: link.href,
+              offsetTop: element.offsetTop - 100, // GNB 높이 고려
+              offsetBottom: element.offsetTop + element.offsetHeight - 100
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+
+      const scrollPosition = window.scrollY + 100;
+      
+      // 현재 활성화된 섹션 찾기
+      let currentActive = '';
+      for (const section of sections) {
+        if (section && scrollPosition >= section.offsetTop && scrollPosition < section.offsetBottom) {
+          currentActive = section.href;
+          break;
+        }
+      }
+      
+      // 홈 섹션은 맨 위에 있을 때 활성화
+      if (scrollPosition < 100) {
+        currentActive = '#';
+      }
+      
+      setActiveSection(currentActive);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navLinks]);
 
   const handleCTAClick = () => {
     if (onCTAClick) {
@@ -106,22 +143,28 @@ export const Gnb: React.FC<GnbProps> = ({
           {/* Desktop Navigation */}
           <div className={`hidden md:block ${!ctaText ? 'ml-auto' : ''}`}>
             <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  target={link.isExternal ? '_blank' : '_self'}
-                  rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                  onClick={link.onClick ? link.onClick : link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
-                  className={`
-                    px-3 py-2 rounded-md text-sm font-medium transition-all duration-200
-                    text-black hover:text-gray-700 cursor-pointer
-                    hover:bg-gray-100 hover:scale-105
-                  `}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.href;
+                return (
+                  <a
+                    key={index}
+                    href={link.href}
+                    target={link.isExternal ? '_blank' : '_self'}
+                    rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                    onClick={link.onClick ? link.onClick : link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
+                    className={`
+                      px-3 py-2 text-sm font-medium transition-all duration-200
+                      ${isActive 
+                        ? 'text-[#03418a] bg-blue-50 border-b-2 border-[#03418a]' 
+                        : 'text-black hover:text-gray-700'
+                      }
+                      cursor-pointer hover:scale-105
+                    `}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -147,7 +190,7 @@ export const Gnb: React.FC<GnbProps> = ({
                 md:hidden inline-flex items-center justify-center p-2 rounded-md 
                 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500
                 transition-all duration-200
-                text-white hover:text-gray-200 hover:bg-white/10 hover:scale-105
+                text-black hover:text-gray-700 hover:bg-gray-100 hover:scale-105
               `}
               aria-expanded="false"
             >
@@ -194,46 +237,54 @@ export const Gnb: React.FC<GnbProps> = ({
         `}>
           <div className={`
             px-2 pt-2 pb-3 space-y-1 border-t 
-            border-white/20 bg-black/90 backdrop-blur-md
+            border-gray-200 bg-white shadow-lg
             transform transition-transform duration-300
             ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'}
           `}>
-            {navLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                target={link.isExternal ? '_blank' : '_self'}
-                rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                onClick={link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
-                className={`
-                  block px-3 py-2 rounded-md text-base font-medium 
-                  transition-all duration-200
-                  text-white hover:text-gray-200 hover:bg-white/10 cursor-pointer
-                  hover:scale-105 hover:translate-x-1
-                `}
-                style={{
-                  transitionDelay: `${index * 50}ms`
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="pt-2" style={{
-              transitionDelay: `${navLinks.length * 50 + 100}ms`
-            }}>
-              <ActionButton
-                variant="primary"
-                size="sm"
-                fullWidth
-                onClick={handleCTAClick}
-                className={`
-                  !bg-white !text-[#03418a] hover:!bg-gray-100 hover:!text-[#052b6b]
+            {navLinks.map((link, index) => {
+              const isActive = activeSection === link.href;
+              return (
+                <a
+                  key={index}
+                  href={link.href}
+                  target={link.isExternal ? '_blank' : '_self'}
+                  rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                  onClick={link.isExternal ? undefined : (e) => handleSmoothScroll(link.href, e)}
+                  className={`
+                    block px-3 py-2 text-base font-medium 
+                    transition-all duration-200
+                    ${isActive 
+                      ? 'text-[#03418a] bg-blue-50 border-l-4 border-[#03418a]' 
+                      : 'text-gray-900 hover:text-[#03418a]'
+                    }
+                    cursor-pointer hover:scale-105 hover:translate-x-1
+                  `}
+                  style={{
+                    transitionDelay: `${index * 50}ms`
+                  }}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+            {ctaText && (
+              <div className="pt-2" style={{
+                transitionDelay: `${navLinks.length * 50 + 100}ms`
+              }}>
+                <ActionButton
+                  variant="primary"
+                  size="sm"
+                  fullWidth
+                  onClick={handleCTAClick}
+                  className={`
+                  !bg-[#03418a] !text-white hover:!bg-[#052b6b] hover:!text-white
                   border-0 font-medium transition-all duration-200 hover:scale-105
                 `}
-              >
-                {ctaText}
-              </ActionButton>
-            </div>
+                >
+                  {ctaText}
+                </ActionButton>
+              </div>
+            )}
           </div>
         </div>
       </div>
