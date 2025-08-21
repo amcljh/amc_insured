@@ -24,7 +24,7 @@ export const gridStyles = {
     title: 'text-3xl lg:text-4xl font-bold tracking-tight mb-2',
     titleLight: 'text-gray-900',
     titleDark: 'text-white',
-    subtitle: 'text-xl lg:text-2xl font-medium mb-4',
+    subtitle: 'text-xl lg:text-3xl font-bold mb-4',
     subtitleLight: 'text-[#03418a]',
     subtitleDark: 'text-[#0456b8]',
     description: 'text-lg leading-relaxed',
@@ -51,8 +51,10 @@ export const gridStyles = {
   // Item styles
   items: {
     card: {
-      baseLight: 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
-      baseDark: 'bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
+      baseLight:
+        'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
+      baseDark:
+        'bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
       hover: 'hover:scale-105',
     },
     minimal: {
@@ -62,8 +64,10 @@ export const gridStyles = {
       hoverDark: 'hover:bg-gray-800 rounded-lg',
     },
     bordered: {
-      baseLight: 'border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300',
-      baseDark: 'border border-gray-700 rounded-lg p-6 hover:border-gray-600 hover:shadow-md transition-all duration-300',
+      baseLight:
+        'border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300',
+      baseDark:
+        'border border-gray-700 rounded-lg p-6 hover:border-gray-600 hover:shadow-md transition-all duration-300',
       hover: '',
     },
   },
@@ -76,14 +80,16 @@ export const gridStyles = {
     icon: 'w-12 h-12 mb-4',
     iconLight: 'text-[#03418a]',
     iconDark: 'text-[#0456b8]',
-    number: 'inline-flex items-center justify-center w-8 h-8 bg-[#03418a] text-white text-sm font-bold rounded-full mb-4',
+    number:
+      'inline-flex items-center justify-center w-8 h-8 bg-[#03418a] text-white text-sm font-bold rounded-full mb-4',
     title: 'text-xl font-semibold mb-2',
     titleLight: 'text-gray-900',
     titleDark: 'text-white',
     description: 'leading-relaxed mb-4',
     descriptionLight: 'text-gray-600',
     descriptionDark: 'text-gray-300',
-    badge: 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#f0f6ff] text-[#03418a] mb-3',
+    badge:
+      'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#f0f6ff] text-[#03418a] mb-3',
     link: 'inline-flex items-center font-medium text-sm transition-colors duration-200 mt-auto',
     linkLight: 'text-[#03418a] hover:text-[#052b6b]',
     linkDark: 'text-[#0456b8] hover:text-[#03418a]',
@@ -94,4 +100,4 @@ export const gridStyles = {
     grid: 'grid',
     transition: 'transition-all duration-300',
   },
-} as const; 
+} as const
