@@ -52,22 +52,22 @@ export const gridStyles = {
   items: {
     card: {
       baseLight:
-        'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
+        'bg-white hover:shadow-lg transition-shadow duration-300 p-6',
       baseDark:
-        'bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6',
+        'bg-gray-800 hover:shadow-lg transition-shadow duration-300 p-6',
       hover: 'hover:scale-105',
     },
     minimal: {
       baseLight: 'p-4',
       baseDark: 'p-4',
-      hoverLight: 'hover:bg-gray-50 rounded-lg',
-      hoverDark: 'hover:bg-gray-800 rounded-lg',
+      hoverLight: 'hover:bg-gray-50',
+      hoverDark: 'hover:bg-gray-800',
     },
     bordered: {
       baseLight:
-        'border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300',
+        'border border-gray-200 p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300',
       baseDark:
-        'border border-gray-700 rounded-lg p-6 hover:border-gray-600 hover:shadow-md transition-all duration-300',
+        'border border-gray-700 p-6 hover:border-gray-600 hover:shadow-md transition-all duration-300',
       hover: '',
     },
   },
@@ -76,7 +76,7 @@ export const gridStyles = {
   itemContent: {
     container: 'flex flex-col h-full',
     header: 'flex-1',
-    image: 'w-full h-48 object-cover rounded-lg mb-4',
+    image: 'w-full h-72 object-cover mb-4',
     icon: 'w-12 h-12 mb-4',
     iconLight: 'text-[#03418a]',
     iconDark: 'text-[#0456b8]',
