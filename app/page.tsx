@@ -5,6 +5,9 @@ import {
   Hero,
   Description,
   Grid,
+  FeatureCards,
+  ProcessFlow,
+  Accordion,
   Partners,
   People,
   Contact,
@@ -219,7 +222,7 @@ const executives: Person[] = [
 const contactInfo: ContactMethod[] = [
   {
     type: 'email',
-    label: 'Email',
+    label: 'Send us an email',
     value: 'info@amcrs.co.kr',
     href: 'mailto:info@amcrs.co.kr',
     icon: (
@@ -317,7 +320,7 @@ export default function Home() {
         itemStyle='card'
         backgroundColor='gray'
       />
-
+   
       {/* Partners Section */}
       <Partners
         id='partners'
@@ -351,8 +354,9 @@ export default function Home() {
         title='Let’s Connect.'
         description="Whether you're a client, partner, or curious about AMC — we're here. We welcome inquiries from across the world — whether you're exploring a partnership, seeking insurance solutions, or just want to learn more about who we are and what we do. Use the form below to reach us directly, or feel free to contact us via email. You'll hear back from someone who understands risk — and acts on it."
         contactMethods={contactInfo}
-        layout='side-by-side'
+        layout='contact-only'
         backgroundColor='white'
+        float='right'
         showForm={true}
         formFields={[
           {

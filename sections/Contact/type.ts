@@ -43,4 +43,7 @@ export interface ContactProps extends Omit<HTMLAttributes<HTMLElement>, 'onSubmi
   
   // Background
   backgroundColor?: 'white' | 'gray' | 'dark' | 'transparent';
+  
+  // Float positioning
+  float?: 'none' | 'left' | 'right' | 'center';
 }

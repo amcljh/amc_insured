@@ -23,6 +23,7 @@ export const Contact: React.FC<ContactProps> = ({
   showMap = false,
   mapEmbedUrl,
   backgroundColor = 'white',
+  float = 'none',
   className = '',
   ...props
 }) => {
@@ -66,6 +67,24 @@ export const Contact: React.FC<ContactProps> = ({
     'form-top': 'grid grid-cols-1 gap-12',
   }[layout];
 
+  // Float positioning classes
+  const getFloatClasses = () => {
+    if (float === 'none') return '';
+    
+    const baseClasses = 'lg:w-[500px]';
+    
+    switch (float) {
+      case 'left':
+        return `${baseClasses} lg:ml-0 lg:mr-auto`;
+      case 'right':
+        return `${baseClasses} lg:ml-auto lg:mr-0`;
+      case 'center':
+        return `${baseClasses} lg:mx-auto`;
+      default:
+        return '';
+    }
+  };
+
   const renderContactMethods = () => (
     <div className="space-y-8">
       <div className={alignmentClass}>
@@ -76,26 +95,33 @@ export const Contact: React.FC<ContactProps> = ({
           <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-6 text-gray-900">{title}</h2>
         )}
         {description && (
-          <p className="text-lg mb-8 text-gray-600">{description}</p>
+          <p className="text-lg mb-8 text-gray-600 leading-relaxed">{description}</p>
         )}
       </div>
 
       <div className="space-y-6">
         {contactMethods.map((method, index) => (
           <div key={index} className="flex items-start space-x-4">
-            {method.icon && (
-              <div className="flex-shrink-0 w-6 h-6 text-[#03418a] mt-1">
-                {method.icon}
-              </div>
-            )}
             <div>
-              <h4 className="text-lg font-medium text-gray-900">{method.label}</h4>
               {method.href ? (
                 <a 
                   href={method.href}
-                  className="text-[#03418a] hover:text-[#052b6b] transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-200 font-medium"
                 >
-                  {method.value}
+                  {method.label}
+                  <svg 
+                    className="ml-3 w-5 h-5" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                    />
+                  </svg>
                 </a>
               ) : (
                 <p className="text-gray-600">{method.value}</p>
@@ -182,23 +208,37 @@ export const Contact: React.FC<ContactProps> = ({
   );
 
   return (
-    <section className={`py-16 lg:py-24 ${backgroundClass} ${className}`} {...props}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={layoutClass}>
-          {layout === 'form-only' && showForm && renderForm()}
-          {layout === 'contact-only' && renderContactMethods()}
-          {layout === 'side-by-side' && (
-            <>
-              {renderContactMethods()}
-              {showForm && renderForm()}
-            </>
-          )}
-          {layout === 'form-top' && (
-            <>
-              {showForm && renderForm()}
-              {renderContactMethods()}
-            </>
-          )}
+    <section 
+      className={`py-16 lg:py-24 relative ${className}`} 
+      style={{
+        backgroundImage: `url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+      {...props}
+    >
+      {/* Background overlay for better readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`bg-white shadow-2xl p-8 lg:p-12 ${getFloatClasses()}`}>
+          <div className={layoutClass}>
+            {layout === 'form-only' && showForm && renderForm()}
+            {layout === 'contact-only' && renderContactMethods()}
+            {layout === 'side-by-side' && (
+              <>
+                {renderContactMethods()}
+                {showForm && renderForm()}
+              </>
+            )}
+            {layout === 'form-top' && (
+              <>
+                {showForm && renderForm()}
+                {renderContactMethods()}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>
