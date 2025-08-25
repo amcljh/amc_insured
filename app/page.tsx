@@ -320,7 +320,7 @@ export default function Home() {
         itemStyle='card'
         backgroundColor='gray'
       />
-   
+
       {/* Partners Section */}
       <Partners
         id='partners'
@@ -409,7 +409,7 @@ export default function Home() {
 
       {/* Footer */}
       <Footer
-        companyName='AMC'
+        companyName='AMC Insured Co., Ltd'
         navSections={[
           {
             title: 'Links',

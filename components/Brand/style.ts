@@ -16,7 +16,7 @@ export const brandStyles = {
       spacingVertical: 'space-y-1',
     },
     lg: {
-      logo: 'w-[120px] h-12',
+      logo: 'w-[100px] h-12',
       text: 'text-xl font-bold',
       tagline: 'text-sm font-bold',
       spacingHorizontal: 'space-x-4',
@@ -45,7 +45,8 @@ export const brandStyles = {
   // Common styles
   common: {
     logo: 'object-contain',
-    defaultLogoBackground: 'bg-[#03418a] rounded-full flex items-center justify-center',
+    defaultLogoBackground:
+      'bg-[#03418a] rounded-full flex items-center justify-center',
     defaultLogoText: 'text-white font-bold text-sm',
     textContainer: 'flex flex-col items-center',
     textPrimary: 'font-bold',
@@ -61,4 +62,4 @@ export const brandStyles = {
     darkExplicit: '',
     lightExplicit: '',
   },
-} as const; 
+} as const

@@ -70,7 +70,7 @@ export const Brand: React.FC<BrandProps> = ({
                 : logoPath
             }
             alt={logoAlt}
-            className={`${currentSize.logo} ${
+            className={` ${currentSize.logo} ${
               brandStyles.common.logo
             } ${logoClassName} ${
               isDarkModeSupported && theme === 'auto'

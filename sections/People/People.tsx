@@ -44,13 +44,13 @@ export const People: React.FC<PeopleProps> = ({
         {/* Header */}
         <div className='text-center max-w-3xl mx-auto mb-16'>
           {subtitle && (
-            <p
-              className={`text-sm font-medium uppercase tracking-wide mb-3 ${
+            <h2
+              className={`text-2xl lg:text-3xl font-bold uppercase tracking-wide mb-3 ${
                 isDark ? 'text-[#0456b8]' : 'text-[#03418a]'
               }`}
             >
               {subtitle}
-            </p>
+            </h2>
           )}
           <h2
             className={`text-3xl lg:text-4xl font-bold mb-6 ${
