@@ -347,11 +347,17 @@ export const Description: React.FC<DescriptionProps> = ({
     >
       {/* Background Overlay Text */}
       {backgroundOverlayText && (
-        <div className={descriptionStyles.backgroundOverlay.container}>
+        <motion.div 
+          className={descriptionStyles.backgroundOverlay.container}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           <span className={descriptionStyles.backgroundOverlay.text}>
             {backgroundOverlayText}
           </span>
-        </div>
+        </motion.div>
       )}
 
       <div className={descriptionStyles.container.wrapper}>

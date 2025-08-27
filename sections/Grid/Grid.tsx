@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { GridProps } from './type';
 import { gridStyles } from './style';
 
@@ -34,11 +35,48 @@ export const Grid: React.FC<GridProps> = ({
     }
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   const renderItem = (item: any, index: number) => {
     const hasInteraction = item.link?.href || item.link?.onClick;
     
     return (
-      <div
+      <motion.div
         key={item.id}
         className={`${
           isDark ? itemStyleConfig.baseDark : itemStyleConfig.baseLight
@@ -47,6 +85,10 @@ export const Grid: React.FC<GridProps> = ({
           (isDark ? (itemStyleConfig as any).hoverDark : (itemStyleConfig as any).hoverLight) || ''
         } cursor-pointer` : ''} ${gridStyles.common.transition}`}
         onClick={() => hasInteraction && handleItemClick(item)}
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
       >
         <div className={gridStyles.itemContent.container}>
           <div className={gridStyles.itemContent.header}>
@@ -119,7 +161,7 @@ export const Grid: React.FC<GridProps> = ({
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -131,7 +173,13 @@ export const Grid: React.FC<GridProps> = ({
       <div className={gridStyles.container.wrapper}>
         {/* Header */}
         {(title || subtitle || description) && (
-          <div className={`${gridStyles.header.container} ${headerAlignmentClass}`}>
+          <motion.div 
+            className={`${gridStyles.header.container} ${headerAlignmentClass}`}
+            variants={headerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {/* Subtitle */}
             {subtitle && (
               <h3 className={`${gridStyles.header.subtitle} ${
@@ -158,13 +206,19 @@ export const Grid: React.FC<GridProps> = ({
                 {description}
               </p>
             )}
-          </div>
+          </motion.div>
         )}
 
         {/* Grid */}
-        <div className={`${gridStyles.common.grid} ${columnClass} ${gapClass}`}>
+        <motion.div 
+          className={`${gridStyles.common.grid} ${columnClass} ${gapClass}`}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {items.map((item, index) => renderItem(item, index))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
