@@ -23,33 +23,33 @@ const insuranceServices: GridItem[] = [
   {
     id: '1',
     title:
-      'Industry-Specific Insurance Solutions for Major Corporations in Korea',
+      'Industry-Specific Risk Solutions for Korea’s Reputable Corporations',
     description:
-      'We provide insurance solutions specialized for various industries such as logistics, maritime, and construction, offering customized services to leading Korean corporations. We effectively manage the complex risks faced by these large companies through risk analysis and optimized insurance programs tailored to each industry.',
+      'We deliver specialized insurance solutions for key industries - including logistics, marine, and construction.Our tailored programs serve Korea’s leading companies with precision and impact.By aligning deep risk analysis with optimized coverage structures, we help major enterprises manage complex exposures with confidence.',
     image:
       'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '2',
-    title: 'Reinsurance Solutions with Global Reach',
+    title: 'Driving Profitable Reinsurance through Global Strength',
     description:
-      'We leverage our strong network in the global reinsurance market to provide solutions that cover a wide range of risks. This allows for portfolio diversification and enhanced stability, enabling us to maximize profitability while maintaining a low loss ratio.',
+      'We deliver reinsurance solutions that leverage a strong global network - covering diverse and complex risks.Our programs help diversify portfolios, strengthen stability, and secure long-term resilience.By keeping loss ratios low and control high, we help partners maximize profitability with confidence.',
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '3',
-    title: 'Tailored Risk Management Solutions for SMEs',
+    title: 'Empowering Korea’s SMEs with Tailored Risk Solutions',
     description:
-      'We offer customized risk management solutions for small and medium-sized enterprises (SMEs) that play a vital role in the Korean economy. We analyze the specific risks of each company and design strategic solutions to minimize them, helping SMEs achieve stable growth.',
+      'We provide tailored risk solutions for small and medium-sized enterprises (SMEs) - a vital force in Korea’s economy. By analyzing each company’s unique exposures, we design strategic programs to reduce risk and strengthen resilience. Our solutions empower SMEs to grow with confidence and stability.',
     image:
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750&q=80',
   },
   {
     id: '4',
-    title: 'Loss Prevention and Risk Mitigation Strategies',
+    title: 'Preventing Risk. Protecting Performance',
     description:
-      'We provide systematic education programs and safety management systems to prevent accidents and minimize risks. By proactively blocking potential risks that our clients may face, we lower the accident rate and strengthen business stability.',
+      'We provide structured training programs and safety systems to prevent accidents and minimize risk. By identifying and addressing potential exposures in advance, we help clients lower incident rates and boost operational stability. Our proactive approach strengthens long-term resilience - before risks become losses.',
     image:
       'https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
@@ -73,65 +73,100 @@ const insurancePartners: Partner[] = [
   },
   {
     id: '3',
+    name: 'KOREAN RE',
+    logo: '/partners/KoreanRe.png',
+    website: 'https://www.koreanre.co.kr/',
+    description: '',
+  },
+  {
+    id: '4',
+    name: 'MSIG',
+    logo: '/partners/MSIG.jpg',
+    website: 'https://www.msig.com.sg/',
+    description: '',
+  },
+  {
+    id: '5',
     name: 'Samsung Fire & Marine Insurance',
     logo: '/partners/samsung fire and marine insurance.png',
     website: 'https://www.samsungfire.com/',
     description: '',
   },
   {
-    id: '4',
+    id: '6',
+    name: 'Hyundai',
+    logo: '/partners/Hyundai.png',
+    website: 'https://www.hi.co.kr/',
+    description: '',
+  },
+  {
+    id: '7',
+    name: 'DB',
+    logo: '/partners/DB.png',
+    website: 'https://www.idbins.com/',
+    description: '',
+  },
+  {
+    id: '8',
     name: 'AIG',
     logo: '/partners/aig.svg',
     website: 'https://www.aig.com/',
     description: '',
   },
   {
-    id: '5',
-    name: 'Chubb',
-    logo: '/partners/chubb.png',
-    website: 'https://www.chubb.com/',
-    description: '',
-  },
-  {
-    id: '6',
-    name: 'Axa',
-    logo: '/partners/axa.png',
-    website: 'https://www.axa.com/',
-    description: '',
-  },
-  {
-    id: '7',
+    id: '9',
     name: 'Starbucks',
     logo: '/partners/starbucks.png',
     website: 'https://www.starbucks.com/',
     description: '',
   },
   {
-    id: '8',
+    id: '10',
     name: 'Shinsegae',
     logo: '/partners/shinsegae.png',
     website: 'https://www.shinsegae.com/',
     description: '',
   },
   {
-    id: '9',
+    id: '11',
     name: 'E-Mart',
     logo: '/partners/emart.png',
     website: 'https://www.emart.com/',
     description: '',
   },
   {
-    id: '10',
+    id: '12',
     name: 'Lotte',
     logo: '/partners/lotte.png',
     website: 'https://www.lotte.co.kr/',
     description: '',
   },
   {
-    id: '11',
-    name: 'DB Insurance',
+    id: '13',
+    name: 'DB Middle East DMCC',
     logo: '/partners/dbme.jpeg',
-    website: 'https://www.idbins.com/',
+    website: 'https://www.db-group.co.kr/',
+    description: '',
+  },
+  {
+    id: '14',
+    name: 'Munich RE',
+    logo: '/partners/Munich.png',
+    website: 'https://www.munichre.com/',
+    description: '',
+  },
+  {
+    id: '15',
+    name: 'KB',
+    logo: '/partners/KB ins.png',
+    website: 'https://www.kbinsure.co.kr/',
+    description: '',
+  },
+  {
+    id: '16',
+    name: 'Axa',
+    logo: '/partners/axa.png',
+    website: 'https://www.axa.com/',
     description: '',
   },
 ]
@@ -291,8 +326,9 @@ export default function Home() {
         subtitle='Rooted in expertise. Driven by action.'
         title={['Powering Risk Solutions', 'from Korea to the World.']}
         description=''
-        backgroundImage='https://images.unsplash.com/photo-1448523183439-d2ac62aca997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-        overlayOpacity={0}
+        backgroundImage='/hero/top-img.jpg'
+        // backgroundImage='https://images.unsplash.com/photo-1448523183439-d2ac62aca997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        overlayOpacity={0.1}
         size='lg'
       />
 
@@ -328,7 +364,7 @@ export default function Home() {
         title='Trusted by Korea’s Leading Companies — and the World’s Top Risk Carriers.'
         description='Respected names. Real relationships. Results that speak. We proudly serve many of Korea’s reputable corporations and government institutions — and collaborate closely with top domestic insurers, global reinsurers, and international brokerage networks. Our growing list of trusted partners reflects our ability to connect complex risks with smart solutions, across borders and industries.'
         partners={insurancePartners}
-        columns={3}
+        columns={4}
         logoStyle='grayscale'
         backgroundColor='white'
       />
@@ -423,26 +459,28 @@ export default function Home() {
             ],
           },
         ]}
-        socialLinks={[
-          {
-            platform: 'Facebook',
-            href: 'https://facebook.com/insurebrokerage',
-            icon: (
-              <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
-                <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
-              </svg>
-            ),
-          },
-          {
-            platform: 'LinkedIn',
-            href: 'https://linkedin.com/company/insurebrokerage',
-            icon: (
-              <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
-                <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
-              </svg>
-            ),
-          },
-        ]}
+        socialLinks={
+          [
+            // {
+            //   platform: 'Facebook',
+            //   href: 'https://facebook.com/insurebrokerage',
+            //   icon: (
+            //     <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
+            //       <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
+            //     </svg>
+            //   ),
+            // },
+            // {
+            //   platform: 'LinkedIn',
+            //   href: 'https://linkedin.com/company/insurebrokerage',
+            //   icon: (
+            //     <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
+            //       <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
+            //     </svg>
+            //   ),
+            // },
+          ]
+        }
         showNewsletter={false}
         onNewsletterSubmit={async (email) => {
           console.log('Newsletter subscription:', email)
