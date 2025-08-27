@@ -326,7 +326,7 @@ export default function Home() {
         subtitle='Rooted in expertise. Driven by action.'
         title={['Powering Risk Solutions', 'from Korea to the World.']}
         description=''
-        backgroundImage='/hero/top-img.jpg'
+        backgroundImage='/hero/top-main-img.jpg'
         // backgroundImage='https://images.unsplash.com/photo-1448523183439-d2ac62aca997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         overlayOpacity={0.1}
         size='lg'
