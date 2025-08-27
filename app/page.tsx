@@ -26,16 +26,20 @@ const insuranceServices: GridItem[] = [
       'Industry-Specific Risk Solutions for Korea’s Reputable Corporations',
     description:
       'We deliver specialized insurance solutions for key industries - including logistics, marine, and construction.Our tailored programs serve Korea’s leading companies with precision and impact.By aligning deep risk analysis with optimized coverage structures, we help major enterprises manage complex exposures with confidence.',
+    // image:
+    //   'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     image:
-      'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://plus.unsplash.com/premium_photo-1661926318373-c497f78d21df?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '2',
     title: 'Driving Profitable Reinsurance through Global Strength',
     description:
       'We deliver reinsurance solutions that leverage a strong global network - covering diverse and complex risks.Our programs help diversify portfolios, strengthen stability, and secure long-term resilience.By keeping loss ratios low and control high, we help partners maximize profitability with confidence.',
+    // image:
+    //   'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=3948&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '3',
@@ -43,7 +47,7 @@ const insuranceServices: GridItem[] = [
     description:
       'We provide tailored risk solutions for small and medium-sized enterprises (SMEs) - a vital force in Korea’s economy. By analyzing each company’s unique exposures, we design strategic programs to reduce risk and strengthen resilience. Our solutions empower SMEs to grow with confidence and stability.',
     image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750&q=80',
+      'https://images.unsplash.com/photo-1710418512781-7899f2362f8a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '4',
@@ -350,7 +354,7 @@ export default function Home() {
         id='services'
         subtitle='Our Business'
         title='Integrated Risk Solutions, Designed to Fit.'
-        description="We mix insight, products, and action to deliver what fits — not what’s standard. At AMC, we don\'t simply offer insurance. We build tailored risk solutions by combining diverse insurance products, reinsurance structures, and strategic advisory — always with our clients’ realities in mind. From logistics and marine risks to enterprise-level exposures, our services are built to protect, adapt, and empower. That’s why our partnerships aren’t just expanding — they’re deepening."
+        description="We mix insight, products, and action to deliver what fits — not what’s standard. At AMC, we don't simply offer insurance. We build tailored risk solutions by combining diverse insurance products, reinsurance structures, and strategic advisory — always with our clients’ realities in mind. From logistics and marine risks to enterprise-level exposures, our services are built to protect, adapt, and empower. That’s why our partnerships aren’t just expanding — they’re deepening."
         items={insuranceServices}
         columns={2}
         itemStyle='card'

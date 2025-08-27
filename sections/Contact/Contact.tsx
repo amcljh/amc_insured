@@ -115,10 +115,11 @@ export const Contact: React.FC<ContactProps> = ({
           </h2>
         )}
         {description && (
-          <p className='text-lg mb-8 text-gray-600 leading-relaxed'>
+          <p className='text-lg mb-2 text-gray-600 leading-relaxed'>
             {description}
           </p>
         )}
+        <p className='font-bold'>e-mail: info@amcrs.co.kr</p>
       </div>
 
       <div className='space-y-6'>
