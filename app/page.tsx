@@ -117,88 +117,89 @@ const insurancePartners: Partner[] = [
     website: 'https://www.aig.com/',
     description: '',
   },
+
   {
     id: '9',
-    name: 'Starbucks',
-    logo: '/partners/starbucks.png',
-    website: 'https://www.starbucks.com/',
-    description: '',
-  },
-  {
-    id: '10',
-    name: 'Shinsegae',
-    logo: '/partners/shinsegae.png',
-    website: 'https://www.shinsegae.com/',
-    description: '',
-  },
-  {
-    id: '11',
-    name: 'E-Mart',
-    logo: '/partners/emart.png',
-    website: 'https://www.emart.com/',
-    description: '',
-  },
-  {
-    id: '12',
-    name: 'Lotte',
-    logo: '/partners/lotte.png',
-    website: 'https://www.lotte.co.kr/',
-    description: '',
-  },
-  {
-    id: '13',
     name: 'DB Middle East DMCC',
     logo: '/partners/dbme.jpeg',
     website: 'https://www.db-group.co.kr/',
     description: '',
   },
   {
-    id: '14',
+    id: '10',
     name: 'Munich RE',
     logo: '/partners/Munich.png',
     website: 'https://www.munichre.com/',
     description: '',
   },
   {
-    id: '15',
+    id: '11',
     name: 'KB',
     logo: '/partners/KB ins.png',
     website: 'https://www.kbinsure.co.kr/',
     description: '',
   },
   {
-    id: '16',
+    id: '12',
     name: 'Daol',
     logo: '/partners/daol.png',
     website: 'https://www.daolsecurities.com/top.jsp',
     description: '',
   },
   {
-    id: '17',
+    id: '13',
     name: 'SK Discovery',
     logo: '/partners/sk-discovery.png',
     website: 'https://www.skdiscovery.com/',
     description: '',
   },
   {
-    id: '18',
+    id: '14',
     name: 'Korea Post',
     logo: '/partners/koreapost.png',
     website: 'https://www.koreapost.go.kr/kpic/index.do',
     description: '',
   },
   {
-    id: '19',
+    id: '15',
     name: 'Shinan',
     logo: '/partners/shinan.jpeg',
     website: 'https://www.shinan.go.kr/',
     description: '',
   },
   {
-    id: '20',
+    id: '16',
     name: 'KCG',
     logo: '/partners/kcg.png',
     website: 'https://www.kcg.go.kr/kcg/main.do',
+    description: '',
+  },
+  {
+    id: '17',
+    name: 'Starbucks',
+    logo: '/partners/starbucks.png',
+    website: 'https://www.starbucks.com/',
+    description: '',
+  },
+  {
+    id: '18',
+    name: 'Shinsegae',
+    logo: '/partners/shinsegae.png',
+    website: 'https://www.shinsegae.com/',
+    description: '',
+  },
+  {
+    id: '19',
+    name: 'E-Mart',
+    logo: '/partners/emart.png',
+    website: 'https://www.emart.com/',
+    description: '',
+  },
+  {
+    id: '20',
+    name: 'Lotte',
+    logo: '/partners/lotte.png',
+    website: 'https://www.lotte.co.kr/',
     description: '',
   },
 ]
@@ -358,7 +359,7 @@ export default function Home() {
         subtitle='Rooted in expertise. Driven by action.'
         title={['Powering Risk Solutions', 'from Korea to the World.']}
         description=''
-        backgroundImage='/hero/top-main-img.jpg'
+        backgroundImage='/hero/top-main.jpg'
         // backgroundImage='https://images.unsplash.com/photo-1448523183439-d2ac62aca997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         overlayOpacity={0.1}
         size='lg'
