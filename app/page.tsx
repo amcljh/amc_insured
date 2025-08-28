@@ -168,9 +168,37 @@ const insurancePartners: Partner[] = [
   },
   {
     id: '16',
-    name: 'Axa',
-    logo: '/partners/axa.png',
-    website: 'https://www.axa.com/',
+    name: 'Daol',
+    logo: '/partners/daol.png',
+    website: 'https://www.daolsecurities.com/top.jsp',
+    description: '',
+  },
+  {
+    id: '17',
+    name: 'SK Discovery',
+    logo: '/partners/sk-discovery.png',
+    website: 'https://www.skdiscovery.com/',
+    description: '',
+  },
+  {
+    id: '18',
+    name: 'Korea Post',
+    logo: '/partners/koreapost.png',
+    website: 'https://www.koreapost.go.kr/kpic/index.do',
+    description: '',
+  },
+  {
+    id: '19',
+    name: 'Shinan',
+    logo: '/partners/shinan.jpeg',
+    website: 'https://www.shinan.go.kr/',
+    description: '',
+  },
+  {
+    id: '20',
+    name: 'KCG',
+    logo: '/partners/kcg.png',
+    website: 'https://www.kcg.go.kr/kcg/main.do',
     description: '',
   },
 ]
@@ -192,10 +220,10 @@ const executives: Person[] = [
   },
   {
     id: '2',
-    name: 'Yeon Jun Kim',
-    position: 'COO',
+    name: 'H. Michael Chung',
+    position: 'EVP',
     quote: '',
-    image: '/people/Yeon Jun Kim.jpg',
+    image: '/people/H.Michael.jpg',
     experience: '',
     education: '',
     socialLinks: {
@@ -205,10 +233,10 @@ const executives: Person[] = [
   },
   {
     id: '3',
-    name: 'Jun Seo Lee',
-    position: 'CHRO',
+    name: 'Yeon Jun Kim',
+    position: 'COO',
     quote: '',
-    image: '/people/Jun Seo Lee.jpg',
+    image: '/people/Yeon Jun Kim.jpg',
     experience: '',
     education: '',
     socialLinks: {
