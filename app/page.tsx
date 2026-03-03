@@ -232,19 +232,19 @@ const executives: Person[] = [
       email: '',
     },
   },
-  {
-    id: '3',
-    name: 'Yeon Jun Kim',
-    position: 'COO',
-    quote: '',
-    image: '/people/Yeon Jun Kim.jpg',
-    experience: '',
-    education: '',
-    socialLinks: {
-      linkedin: '',
-      email: '',
-    },
-  },
+  // {
+  //   id: '3',
+  //   name: 'Yeon Jun Kim',
+  //   position: 'COO',
+  //   quote: '',
+  //   image: '/people/Yeon Jun Kim.jpg',
+  //   experience: '',
+  //   education: '',
+  //   socialLinks: {
+  //     linkedin: '',
+  //     email: '',
+  //   },
+  // },
   {
     id: '4',
     name: 'Hwang Woo Kim',
@@ -271,19 +271,19 @@ const executives: Person[] = [
       email: '',
     },
   },
-  {
-    id: '6',
-    name: 'Min Hyung Kwon',
-    position: 'Claim & Service Unit Leader',
-    quote: '',
-    image: '/people/Min Hyung Kwon.jpg',
-    experience: '',
-    education: '',
-    socialLinks: {
-      linkedin: '',
-      email: '',
-    },
-  },
+  // {
+  //   id: '6',
+  //   name: 'Min Hyung Kwon',
+  //   position: 'Claim & Service Unit Leader',
+  //   quote: '',
+  //   image: '/people/Min Hyung Kwon.jpg',
+  //   experience: '',
+  //   education: '',
+  //   socialLinks: {
+  //     linkedin: '',
+  //     email: '',
+  //   },
+  // },
 ]
 
 // Contact information
@@ -409,7 +409,7 @@ export default function Home() {
         title='Leading Differently. Acting Decisively.'
         description='Smart, agile, and deeply attuned to client risk. AMC’s leadership team brings together a new generation of professionals who think fast, act faster, and never settle for one-size-fits-all solutions. We lead with insight, urgency, and a relentless focus on understanding each client’s unique risk — and responding with bold, customized strategies.'
         people={executives}
-        columns={3}
+        columns={2}
         backgroundColor='white'
         showSocials={true}
         layout='hero'

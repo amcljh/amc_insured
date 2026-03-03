@@ -71,7 +71,7 @@ export const People: React.FC<PeopleProps> = ({
         </div>
 
         {/* People Grid */}
-        <div className={`grid ${columnClasses[columns]} gap-8 lg:gap-12`}>
+        <div className={`grid ${columnClasses[columns]} gap-12 lg:gap-24`}>
           {people.map((person) => (
             <div key={person.id} className='group'>
               {layout === 'hero' ? (
