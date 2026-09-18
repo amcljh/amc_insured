@@ -351,9 +351,9 @@ const teamGroups: PersonGroup[] = [
       },
       {
         id: 'cm-4',
-        name: 'YC Kim',
+        name: 'WC Kim',
         position: 'Construction / Engineering / Energy / Infrastructure',
-        image: '/people/team/YC Kim.jpg',
+        image: '/people/team/WC Kim.jpg',
       },
       {
         id: 'cm-5',
