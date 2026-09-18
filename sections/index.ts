@@ -20,7 +20,7 @@ export type { AccordionProps } from './Accordion/type';
 export type { ContactProps, ContactMethod, FormField } from './Contact/type';
 export type { PartnersProps, Partner } from './Partners/type';
 export type { VideoProps } from './Video/type';
-export type { PeopleProps, Person } from './People/type';
+export type { PeopleProps, Person, PersonGroup } from './People/type';
 
 // Other sections (to be implemented)
 // export { Vision } from './Vision/Vision';

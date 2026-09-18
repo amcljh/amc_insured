@@ -157,12 +157,16 @@ export const Partners: React.FC<PartnersProps> = ({
               whileInView='visible'
               viewport={{ once: true, margin: '-50px' }}
             >
-              {/* Logo */}
-              <img
-                src={partner.logo}
-                alt={partner.logoAlt || `${partner.name} logo`}
-                className={`h-12 lg:h-16 w-auto object-contain transition-all duration-300 ${logoStyleClass}`}
-              />
+              {/* Logo — 로고마다 동일한 고정 박스를 주고 그 안에서 object-contain 으로
+                  맞춘다. 정사각 로고와 가로로 긴 로고의 시각 크기를 통일하기 위함.
+                  (원본은 400x140 투명 PNG 로 정규화되어 들어온다는 전제) */}
+              <div className='flex items-center justify-center w-full h-14 lg:h-20'>
+                <img
+                  src={partner.logo}
+                  alt={partner.logoAlt || `${partner.name} logo`}
+                  className={`max-h-full max-w-full object-contain transition-all duration-300 ${logoStyleClass}`}
+                />
+              </div>
 
               {/* Partner Name */}
               {showPartnerNames && (

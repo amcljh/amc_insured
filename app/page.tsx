@@ -14,6 +14,7 @@ import {
   GridItem,
   Partner,
   Person,
+  PersonGroup,
   ContactMethod,
 } from '../sections'
 import { Gnb, Footer } from '../components'
@@ -59,8 +60,83 @@ const insuranceServices: GridItem[] = [
   },
 ]
 
-// Partner insurance companies
+// Our Partners — 재보험사 10곳 (5열 x 2줄로 노출)
+// 로고 원본은 400x140 투명 PNG 로 정규화되어 있다는 전제.
 const insurancePartners: Partner[] = [
+  {
+    id: '1',
+    name: 'AXA XL',
+    logo: '/partners/re/axa-xl.png',
+    website: 'https://axaxl.com/',
+    description: '',
+  },
+  {
+    id: '2',
+    name: 'Beazley',
+    logo: '/partners/re/beazley.png',
+    website: 'https://www.beazley.com/',
+    description: '',
+  },
+  {
+    id: '3',
+    name: 'Berkshire Hathaway',
+    logo: '/partners/re/berkshire-hathaway.png',
+    website: 'https://www.berkshirehathaway.com/',
+    description: '',
+  },
+  {
+    id: '4',
+    name: 'China Re',
+    logo: '/partners/re/china-re.png',
+    website: 'https://www.chinare.com.cn/',
+    description: '',
+  },
+  {
+    id: '5',
+    name: 'Great American Insurance Group',
+    logo: '/partners/re/great-american.png',
+    website: 'https://www.greatamericaninsurancegroup.com/',
+    description: '',
+  },
+  {
+    id: '6',
+    name: "Lloyd's",
+    logo: '/partners/re/lloyds.png',
+    website: 'https://www.lloyds.com/',
+    description: '',
+  },
+  {
+    id: '7',
+    name: 'Markel',
+    logo: '/partners/re/markel.png',
+    website: 'https://www.markel.com/',
+    description: '',
+  },
+  {
+    id: '8',
+    name: 'Munich Re',
+    logo: '/partners/re/munich-re.png',
+    website: 'https://www.munichre.com/',
+    description: '',
+  },
+  {
+    id: '9',
+    name: 'PartnerRe',
+    logo: '/partners/re/partner-re.png',
+    website: 'https://www.partnerre.com/',
+    description: '',
+  },
+  {
+    id: '10',
+    name: 'Swiss Re',
+    logo: '/partners/re/swiss-re.png',
+    website: 'https://www.swissre.com/',
+    description: '',
+  },
+]
+
+/* 기존 Our Partners 목록 (고객 요청으로 재보험사 10곳으로 교체 — 되돌릴 수 있게 보관)
+const insurancePartnersPrev: Partner[] = [
   {
     id: '1',
     name: 'E-Mart',
@@ -203,8 +279,9 @@ const insurancePartners: Partner[] = [
   //   description: '',
   // },
 ]
+*/
 
-// C-Level Executives
+// AMC Leadership — 3명 (HW Kim / JH Choi / CH Jang 은 AMC Team 으로 이동)
 const executives: Person[] = [
   {
     id: '1',
@@ -232,25 +309,12 @@ const executives: Person[] = [
       email: '',
     },
   },
-  // {
-  //   id: '3',
-  //   name: 'Yeon Jun Kim',
-  //   position: 'COO',
-  //   quote: '',
-  //   image: '/people/Yeon Jun Kim.jpg',
-  //   experience: '',
-  //   education: '',
-  //   socialLinks: {
-  //     linkedin: '',
-  //     email: '',
-  //   },
-  // },
   {
-    id: '4',
-    name: 'Hwang Woo Kim',
-    position: 'Corporate & Material Risk Team Leader',
+    id: '3',
+    name: 'Jeong Hee Yoon',
+    position: 'Sales Director',
     quote: '',
-    image: '/people/Hwang Woo Kim.jpg',
+    image: '/people/Jeong Hee Yoon.jpg',
     experience: '',
     education: '',
     socialLinks: {
@@ -258,32 +322,152 @@ const executives: Person[] = [
       email: '',
     },
   },
+]
+
+// AMC Team — 팀별 인원 (영문 이니셜 / 전문분야 영문)
+const teamGroups: PersonGroup[] = [
   {
-    id: '5',
-    name: 'SI Hyun Kim',
-    position: 'Corporate & Casualty Risk Team Leader',
-    quote: '',
-    image: '/people/SI Hyun Kim_2.jpg',
-    experience: '',
-    education: '',
-    socialLinks: {
-      linkedin: '',
-      email: '',
-    },
+    id: 'client-management',
+    title: 'Client Management Team',
+    people: [
+      {
+        id: 'cm-1',
+        name: 'HW Kim',
+        position: 'Team Leader',
+        image: '/people/team/HW Kim.jpg',
+      },
+      {
+        id: 'cm-2',
+        name: 'EH Hwang',
+        position:
+          'Corporate Liability / Multi-Facility / Directors & Officers (D&O)',
+        image: '/people/team/EH Hwang.jpg',
+      },
+      {
+        id: 'cm-3',
+        name: 'JH Lee',
+        position: 'Corporate Property / Fire / Business Interruption Risk',
+        image: '/people/team/JH Lee.jpg',
+      },
+      {
+        id: 'cm-4',
+        name: 'YC Kim',
+        position: 'Construction / Engineering / Energy / Infrastructure',
+        image: '/people/team/YC Kim.jpg',
+      },
+      {
+        id: 'cm-5',
+        name: 'BC Kim',
+        position:
+          'Corporate Liability / Multi-Facility / Directors & Officers (D&O)',
+        image: '/people/team/BC Kim.jpg',
+      },
+      {
+        id: 'cm-6',
+        name: 'JS Kim',
+        position:
+          'Corporate Liability / Multi-Facility / Directors & Officers (D&O)',
+        image: '/people/team/JS Kim.jpg',
+      },
+    ],
   },
-  // {
-  //   id: '6',
-  //   name: 'Min Hyung Kwon',
-  //   position: 'Claim & Service Unit Leader',
-  //   quote: '',
-  //   image: '/people/Min Hyung Kwon.jpg',
-  //   experience: '',
-  //   education: '',
-  //   socialLinks: {
-  //     linkedin: '',
-  //     email: '',
-  //   },
-  // },
+  {
+    id: 'claim-control',
+    title: 'Claim Control Team',
+    people: [
+      {
+        id: 'cc-1',
+        name: 'JH Choi',
+        position: 'Team Leader',
+        image: '/people/team/JH Choi.jpg',
+      },
+      {
+        id: 'cc-2',
+        name: 'JS Kim',
+        position:
+          'Construction / Engineering / Energy / Infrastructure / Corporate Liability / Multi-Facility / Directors & Officers (D&O) / Cyber & Digital Risk',
+        image: '/people/team/JS Kim_2.jpg',
+      },
+      {
+        id: 'cc-3',
+        name: 'J Park',
+        position: 'Employee Group Accident / Surety / Affinity',
+        image: '/people/team/J Park.jpg',
+      },
+      {
+        id: 'cc-4',
+        name: 'SJ Shin',
+        position: 'Employee Group Accident',
+        image: '/people/team/SJ Shin.jpg',
+      },
+    ],
+  },
+  {
+    id: 'marine',
+    title: 'Marine Team',
+    people: [
+      {
+        id: 'mr-1',
+        name: 'CH Jang',
+        position: 'Team Leader',
+        image: '/people/team/CH Jang.jpg',
+      },
+      {
+        id: 'mr-2',
+        name: 'YD Kim',
+        position: 'Marine / Cargo / Logistics',
+        image: '/people/team/YD Kim.jpg',
+      },
+      {
+        id: 'mr-3',
+        name: 'SY Yoon',
+        position:
+          'Marine / Cargo / Logistics / Corporate Liability / Multi-Facility / Directors & Officers (D&O)',
+        image: '/people/team/SY Yoon.jpg',
+      },
+      {
+        id: 'mr-4',
+        name: 'DE Kwak',
+        position:
+          'Marine / Cargo / Logistics / Construction / Engineering / Energy / Infrastructure',
+        image: '/people/team/DE Kwak.jpg',
+      },
+      {
+        // Client Management Team 에서 이동
+        id: 'mr-5',
+        name: 'HS Moon',
+        position:
+          'Corporate Liability / Multi-Facility / Directors & Officers (D&O)',
+        image: '/people/team/HS Moon.jpg',
+      },
+    ],
+  },
+  {
+    id: 'hr-gat',
+    title: 'HR&GAT Team',
+    people: [
+      {
+        id: 'hr-1',
+        name: 'SE You',
+        position: 'HR&GA',
+        image: '/people/team/SE You.jpg',
+      },
+      {
+        id: 'hr-2',
+        name: 'SJ Choi',
+        position: 'HR&GA',
+        image: '/people/team/SJ Choi.jpg',
+      },
+      {
+        // Finance 파트 — 앞의 HR&GA 인원과 파트가 다르므로 좌측으로 띄워 분리 표시
+        id: 'hr-3',
+        name: 'SS An',
+        position: 'Finance',
+        image: '/people/team/SS An.jpg',
+        offset: true,
+      },
+    ],
+  },
 ]
 
 // Contact information
@@ -349,6 +533,7 @@ export default function Home() {
           { label: 'Our Business', href: '#services' },
           { label: 'Our Partners', href: '#partners' },
           { label: 'AMC Leadership', href: '#leadership' },
+          { label: 'AMC Team', href: '#team' },
           { label: 'Contact Us', href: '#contact' },
         ]}
       />
@@ -397,7 +582,7 @@ export default function Home() {
         title='Trusted by Korea’s Leading Companies — and the World’s Top Risk Carriers.'
         description='Respected names. Real relationships. Results that speak. We proudly serve many of Korea’s reputable corporations and government institutions — and collaborate closely with top domestic insurers, global reinsurers, and international brokerage networks. Our growing list of trusted partners reflects our ability to connect complex risks with smart solutions, across borders and industries.'
         partners={insurancePartners}
-        columns={4}
+        columns={5}
         logoStyle='grayscale'
         backgroundColor='white'
       />
@@ -409,9 +594,22 @@ export default function Home() {
         title='Leading Differently. Acting Decisively.'
         description='Smart, agile, and deeply attuned to client risk. AMC’s leadership team brings together a new generation of professionals who think fast, act faster, and never settle for one-size-fits-all solutions. We lead with insight, urgency, and a relentless focus on understanding each client’s unique risk — and responding with bold, customized strategies.'
         people={executives}
-        columns={2}
+        columns={3}
         backgroundColor='white'
         showSocials={true}
+        layout='hero'
+      />
+
+      {/* Team Section */}
+      <People
+        id='team'
+        subtitle='AMC Team'
+        title='The Experts Behind Every Solution.'
+        description="Every client challenge is met by a team that knows the details — and owns them. AMC's members are seasoned specialists across corporate liability, marine, group benefits, and beyond. They dig into the complexity, coordinate across boundaries, and deliver with precision. No handoffs. No gaps. Just expertise, working directly for you."
+        groups={teamGroups}
+        columns={4}
+        backgroundColor='gray'
+        showSocials={false}
         layout='hero'
       />
 
@@ -488,6 +686,7 @@ export default function Home() {
               { label: 'Our Business', href: '#services' },
               { label: 'Our Partners', href: '#partners' },
               { label: 'AMC Leadership', href: '#leadership' },
+              { label: 'AMC Team', href: '#team' },
               { label: 'Contact Us', href: '#contact' },
             ],
           },
