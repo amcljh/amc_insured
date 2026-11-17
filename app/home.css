@@ -298,3 +298,65 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
   .amc .team-group h3{flex-direction:column;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* =====================================================================
+   Interactions — 스크롤 등장 효과는 components/ScrollEffects, 메뉴 강조는 components/SiteHeader
+   ===================================================================== */
+@keyframes amc-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes amc-drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes amc-hero-zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+
+/* Hero: 배경이 천천히 당겨지고 문구가 순서대로 등장 */
+.amc .hero img{animation:amc-hero-zoom 2.8s cubic-bezier(.22,1,.36,1) both}
+.amc .hero .wrap>*{animation:amc-rise .9s cubic-bezier(.22,1,.36,1) both}
+.amc .hero .wrap>:nth-child(2){animation-delay:.12s}
+.amc .hero .wrap>:nth-child(3){animation-delay:.24s}
+.amc .hero .wrap>:nth-child(4){animation-delay:.36s}
+.amc .hero .wrap>:nth-child(5){animation-delay:.48s}
+
+/* Header: 스크롤 시 그림자, 현재 섹션 메뉴 강조, 드롭다운 등장 */
+.amc .site-head{transition:box-shadow .3s ease}
+.amc .site-head.scrolled{box-shadow:0 6px 24px rgba(10,35,66,.10)}
+.amc .nav-item>a{transition:color .2s,border-color .2s}
+.amc .nav-item>a.active{color:var(--accent);border-bottom-color:var(--gold)}
+.amc .nav-item:hover>.sub,.amc .nav-item:focus-within>.sub{animation:amc-drop .22s cubic-bezier(.22,1,.36,1)}
+.amc .menu-btn{transition:background-color .2s,color .2s,border-color .2s}
+.amc .menu-btn.open{background:var(--brand);border-color:var(--brand);color:#F4F7FB}
+@media (max-width:900px){
+  .amc .nav.open{animation:amc-drop .28s cubic-bezier(.22,1,.36,1)}
+  .amc .nav-item>a.active{border-bottom-color:var(--line)}
+}
+
+/* 스크롤 진행 막대 */
+.amc .scroll-bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;z-index:11;pointer-events:none}
+.amc .scroll-bar>div{height:100%;background:linear-gradient(90deg,var(--gold),var(--accent));transform:scaleX(0);transform-origin:0 50%}
+
+/* 맨 위로 버튼 */
+.amc .to-top{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:12;width:46px;height:46px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--brand);color:#F4F7FB;box-shadow:0 8px 22px rgba(10,35,66,.28);cursor:pointer;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .3s,transform .3s cubic-bezier(.22,1,.36,1),background-color .2s}
+.amc .to-top.show{opacity:1;transform:none;pointer-events:auto}
+.amc .to-top svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* 카드·목록 호버 (마우스가 있는 기기만) */
+.amc .service{position:relative}
+.amc .service::after{content:"";position:absolute;left:-1px;right:-1px;bottom:-1px;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.amc .service,.amc .deliver li,.amc .areas li,.amc .tile,.amc .person img{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .3s}
+.amc .tile svg{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.amc .partners li,.amc .chips li,.amc .qualities li{transition:background-color .25s,color .25s}
+@media (hover:hover){
+  .amc .service:hover,.amc .deliver li:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,35,66,.12);border-color:var(--accent)}
+  .amc .service:hover::after{transform:scaleX(1)}
+  .amc .areas li:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(10,35,66,.12)}
+  .amc .tile:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(4,28,62,.28)}
+  .amc .tile:hover svg{transform:scale(1.1) rotate(-4deg)}
+  .amc .person:hover img{transform:translateY(-6px);box-shadow:0 16px 30px rgba(10,35,66,.2)}
+  .amc .partners li:hover{background:var(--surface);color:var(--accent)}
+  .amc .partners li:hover .p-ko{color:var(--accent)}
+  .amc .chips li:hover{background:var(--accent);color:var(--bg)}
+  .amc .qualities li:hover{background:var(--surface)}
+  .amc .to-top:hover{background:var(--brand-ink)}
+}
+
+/* 동작 줄이기 설정 시 모든 움직임 해제 */
+@media (prefers-reduced-motion:reduce){
+  .amc *,.amc *::before,.amc *::after{animation:none!important;transition:none!important}
+}

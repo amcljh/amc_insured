@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Inter, Source_Serif_4 } from 'next/font/google'
 import { SiteHeader, type SiteNavItem } from '../components/SiteHeader/SiteHeader'
 import { CopyEmail } from '../components/CopyEmail/CopyEmail'
+import { ScrollEffects } from '../components/ScrollEffects/ScrollEffects'
 import { ADJUSTERS, INSURERS, LEADERSHIP, REINSURERS, TEAMS, teamId, type Company, type Member } from './site-data'
 import './home.css'
 
@@ -135,6 +136,7 @@ export default function Home() {
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
 
       <SiteHeader items={NAV} />
+      <ScrollEffects />
 
       <main id='top'>
         <section className='hero'>
