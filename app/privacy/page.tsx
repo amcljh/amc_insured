@@ -13,7 +13,6 @@ import {
   THIRD_PARTIES,
   TRANSFERS,
   USES_COOKIES,
-  isDraft,
 } from './privacy-data'
 
 export const metadata = {
@@ -55,7 +54,6 @@ const EN_TOC: [string, string][] = [
 ]
 
 export default function PrivacyPolicyPage() {
-  const draft = isDraft()
   // 성명 / 직책 / 전화 / 전자우편 순으로 이어 붙입니다(빈 값은 건너뜀).
   const contactRows: [string, string, string[]][] = [
     [
@@ -123,15 +121,6 @@ export default function PrivacyPolicyPage() {
         </div>
       </header>
 
-      {draft && (
-        <div className='border-y border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-100'>
-          <p lang='ko' className='mx-auto max-w-6xl px-6 py-3 text-sm'>
-            <strong>초안</strong> — 확정되지 않은 내용입니다. <Value v='^파란색 바탕' />은 초안 통합본(2026-11-20)에서
-            반영한 내용으로 최종 검토가 남아 있고, <Pending /> 표시와 <Value v='~노란색 바탕' />은 추가 확인이
-            필요한 내용입니다.
-          </p>
-        </div>
-      )}
 
       <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 md:py-16 lg:grid-cols-[1fr_320px]'>
         <div className='min-w-0 space-y-16'>
@@ -183,7 +172,7 @@ export default function PrivacyPolicyPage() {
               ) : (
                 <>
                   <p>
-                    <Value v='^회사는 정보주체의 동의, 법률의 특별한 규정 등 「개인정보 보호법」 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.' />
+                    회사는 정보주체의 동의, 법률의 특별한 규정 등 「개인정보 보호법」 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.
                   </p>
                   <Table
                     head={['제공받는 자', '제공 목적', '제공 항목', '보유기간']}
@@ -198,10 +187,9 @@ export default function PrivacyPolicyPage() {
               <Table head={['수탁자', '위탁 업무']} rows={PROCESSORS.map((p) => [p.company, p.task])} />
               <p>
                 회사는 위탁계약 체결 시 「개인정보 보호법」 제26조에 따라 위탁업무 수행 목적 외 개인정보 처리
-                금지, 안전성 확보조치, 재위탁 제한, 수탁자에 대한 관리·감독
-                <Value v='^, 손해배상 등 책임에 관한 사항' />을 문서에 명시하고, 수탁자가 개인정보를 안전하게
+                금지, 안전성 확보조치, 재위탁 제한, 수탁자에 대한 관리·감독, 손해배상 등 책임에 관한 사항을 문서에 명시하고, 수탁자가 개인정보를 안전하게
                 처리하는지 감독합니다. 위탁 업무의 내용이나 수탁자가 변경되면 이 처리방침을 통하여{' '}
-                <Value v='^지체 없이' /> 공개합니다.
+                지체 없이 공개합니다.
               </p>
             </Section>
 
@@ -246,8 +234,8 @@ export default function PrivacyPolicyPage() {
                   있습니다.
                 </li>
                 <li>
-                  권리 행사는 서면, <Value v='^전화,' /> 전자우편 등으로 제11항의 개인정보 보호책임자
-                  <Value v='^ 또는 담당 부서' />에 하실 수 있으며, 회사는 지체 없이 조치합니다.
+                  권리 행사는 서면, 전화, 전자우편 등으로 제11항의 개인정보 보호책임자
+                   또는 담당 부서에 하실 수 있으며, 회사는 지체 없이 조치합니다.
                 </li>
                 <li>
                   권리 행사는 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수도 있습니다. 이 경우 위임장을
@@ -258,7 +246,7 @@ export default function PrivacyPolicyPage() {
                   경우 등에는 처리정지 요구가 제한될 수 있습니다.
                 </li>
                 <li>
-                  <Value v='^회사는 권리 행사를 요구한 자가 본인이거나 정당한 대리인인지 확인합니다.' />
+                  회사는 권리 행사를 요구한 자가 본인이거나 정당한 대리인인지 확인합니다.
                 </li>
               </ul>
             </Section>
@@ -267,14 +255,11 @@ export default function PrivacyPolicyPage() {
               <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 하고 있습니다.</p>
               <ul className='list-disc space-y-1 pl-5'>
                 <li>
-                  관리적 조치: 내부관리계획 수립·시행, 개인정보 취급 직원의 최소화 및 정기 교육
-                  <Value v='^, 수탁자 관리·감독' />
+                  관리적 조치: 내부관리계획 수립·시행, 개인정보 취급 직원의 최소화 및 정기 교육, 수탁자 관리·감독
                 </li>
                 <li>
-                  기술적 조치: 개인정보처리시스템 접근권한 관리
-                  <Value v='^ 및 접근 통제' />, 접속기록 보관
-                  <Value v='^ 및 위·변조 방지' />, 전송 구간 암호화, 보안 프로그램 설치
-                  <Value v='^·갱신' />, <Value v='^주민등록번호 등 고유식별정보의 암호화 저장' />
+                  기술적 조치: 개인정보처리시스템 접근권한 관리 및 접근 통제, 접속기록 보관 및 위·변조
+                  방지, 전송 구간 암호화, 보안 프로그램 설치·갱신, 주민등록번호 등 고유식별정보의 암호화 저장
                 </li>
                 <li>물리적 조치: 문서·저장매체 보관 장소의 출입 통제</li>
               </ul>
@@ -298,7 +283,7 @@ export default function PrivacyPolicyPage() {
               title={
                 <>
                   11. 개인정보 보호책임자
-                  <Value v='^ 및 담당 부서' />
+                   및 담당 부서
                 </>
               }
             >
@@ -309,7 +294,7 @@ export default function PrivacyPolicyPage() {
               <ContactList rows={contactRows.map(([ko, , parts]) => [ko, parts])} />
               <p>
                 정보주체는 회사의 서비스를 이용하면서 발생한 개인정보 보호 관련 문의, 불만 처리, 피해 구제 등을
-                개인정보 보호책임자<Value v='^ 및 담당 부서' />에 문의하실 수 있으며, 회사는 지체 없이 답변하고
+                개인정보 보호책임자 및 담당 부서에 문의하실 수 있으며, 회사는 지체 없이 답변하고
                 처리합니다.
               </p>
             </Section>
@@ -333,8 +318,8 @@ export default function PrivacyPolicyPage() {
             <Section id='ko-changes' title='13. 개인정보 처리방침의 변경'>
               <p>
                 이 개인정보 처리방침은 <Value v={EFFECTIVE_DATE} />부터 적용됩니다. 내용이 추가·삭제·수정되는
-                경우 <Value v='^시행일 7일 전부터' /> 홈페이지를 통하여 공지합니다.{' '}
-                <Value v='^다만 정보주체의 권리에 중요한 변경이 있는 경우에는 30일 전부터 공지합니다.' />
+                경우 시행일 7일 전부터 홈페이지를 통하여 공지합니다.{' '}
+                다만 정보주체의 권리에 중요한 변경이 있는 경우에는 30일 전부터 공지합니다.
               </p>
               {PREVIOUS_VERSIONS.length > 0 && (
                 <ul className='list-disc space-y-1 pl-5 text-sm'>
