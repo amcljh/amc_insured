@@ -360,3 +360,47 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
 @media (prefers-reduced-motion:reduce){
   .amc *,.amc *::before,.amc *::after{animation:none!important;transition:none!important}
 }
+
+/* =====================================================================
+   공지 띠(메인 첫 화면)와 공지 페이지(/notice/...)
+   ===================================================================== */
+.amc .notice-bar{background:#8B1E1E;color:#FFF5F3;position:relative;z-index:10}
+.amc .notice-bar a{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;min-height:48px;padding-block:10px;color:inherit;text-decoration:none;font-size:15px;line-height:1.45}
+.amc .notice-bar .nb-label{font-weight:700;color:#FFD9D2;white-space:nowrap}
+.amc .notice-bar .nb-title{font-weight:600}
+.amc .notice-bar .nb-more{margin-left:auto;font-size:14px;font-weight:600;white-space:nowrap;border-bottom:1px solid rgba(255,245,243,.6)}
+.amc .notice-bar a:hover .nb-title,.amc .notice-bar a:focus-visible .nb-title{text-decoration:underline}
+.amc .notice-bar a:focus-visible{outline-color:#FFF5F3}
+@media (max-width:620px){
+  .amc .notice-bar a{font-size:14px}
+  .amc .notice-bar .nb-more{margin-left:0}
+}
+
+.amc .notice-home{color:var(--fg);text-decoration:none;font-size:15px;font-weight:500}
+.amc .notice-home:hover{color:var(--accent)}
+.amc .notice-page{padding-block:clamp(40px,6vw,72px) clamp(56px,8vw,96px)}
+.amc .notice-article{max-width:860px}
+.amc .notice-label{margin:0 0 8px;font-size:15px;font-weight:700;color:#B42318}
+.amc .notice-article h1{font-size:clamp(26px,3.6vw,36px);line-height:1.3;font-weight:700;color:var(--brand);margin:0}
+.amc .notice-period{margin:10px 0 0;padding-bottom:18px;border-bottom:2px solid var(--brand);color:var(--muted);font-size:15px}
+.amc .notice-lead{margin-top:22px}
+.amc .notice-lead p{margin:0 0 10px}
+.amc .notice-article section{margin-top:32px}
+.amc .notice-article h2{font-family:inherit;font-size:19px;font-weight:700;line-height:1.4;color:var(--brand);margin:0 0 10px;max-width:none}
+.amc .notice-article ul{margin:0;padding-left:1.2em}
+.amc .notice-article li{margin:0 0 8px}
+.amc .notice-article li strong{color:var(--fg)}
+.amc .notice-warn{margin:12px 0 0;color:#B42318;font-weight:700}
+.amc .notice-contact{margin:0;display:grid;gap:8px;padding:16px 20px;background:var(--surface);border-left:4px solid var(--brand)}
+.amc .notice-contact div{display:grid;grid-template-columns:5em minmax(0,1fr);gap:12px}
+.amc .notice-contact dt{font-weight:700;color:var(--muted)}
+.amc .notice-contact dd{margin:0;overflow-wrap:anywhere}
+.amc .notice-sign{margin-top:48px;text-align:center}
+.amc .notice-sign p{margin:0 0 6px}
+.amc .notice-pdf{margin-top:32px;text-align:center}
+.amc .notice-pdf a{display:inline-block;padding:10px 18px;border:1px solid var(--accent);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:600}
+.amc .notice-pdf a:hover{background:var(--accent);color:var(--bg)}
+@media (prefers-color-scheme: dark){
+  .amc .notice-label,.amc .notice-warn{color:#FF8A7A}
+  .amc .notice-article h1,.amc .notice-article h2{color:var(--accent)}
+}
