@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { Inter, Source_Serif_4 } from 'next/font/google'
 import { SiteHeader, type SiteNavItem } from '../components/SiteHeader/SiteHeader'
 import { CopyEmail } from '../components/CopyEmail/CopyEmail'
+import { ScrollEffects } from '../components/ScrollEffects/ScrollEffects'
+import { NoticeBar } from '../components/NoticeBar/NoticeBar'
+import { AMC_AIR_NOTICE, isBannerActive } from './notice/notices'
 import { ADJUSTERS, INSURERS, LEADERSHIP, REINSURERS, TEAMS, teamId, type Company, type Member } from './site-data'
 import './home.css'
 
@@ -14,6 +17,9 @@ const serif = Source_Serif_4({
   display: 'swap',
 })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+
+/** 공지 띠 표시 기간 판단이 날짜에 따라 바뀌므로 하루 한 번 페이지를 다시 생성 */
+export const revalidate = 86400
 
 const SITE_URL = 'https://www.amcgeneral.co.kr/'
 const EMAIL = 'info@amcrs.co.kr'
@@ -134,7 +140,9 @@ export default function Home() {
     <div className={`amc ${serif.variable} ${inter.variable}`}>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
 
+      {isBannerActive(AMC_AIR_NOTICE) && <NoticeBar notice={AMC_AIR_NOTICE} />}
       <SiteHeader items={NAV} />
+      <ScrollEffects />
 
       <main id='top'>
         <section className='hero'>
