@@ -3,9 +3,13 @@ import {
   EFFECTIVE_DATE,
   PREVIOUS_VERSIONS,
   PRIVACY_OFFICER,
+  PRIVACY_MANAGER,
+  PRIVACY_DEPARTMENT,
   PROCESSING,
   PROCESSORS,
   SENSITIVE_INFO,
+  UNIQUE_ID_INFO,
+  COLLECTION_SOURCE,
   THIRD_PARTIES,
   TRANSFERS,
   USES_COOKIES,
@@ -23,16 +27,17 @@ const ENGLISH_EFFECTIVE_DATE = 'August 28, 2025'
 const KO_TOC: [string, string][] = [
   ['ko-purpose', '1. 처리 목적·항목·보유기간'],
   ['ko-sensitive', '2. 민감정보 처리'],
-  ['ko-third', '3. 제3자 제공'],
-  ['ko-processor', '4. 처리 위탁'],
-  ['ko-transfer', '5. 국외 이전'],
-  ['ko-destroy', '6. 파기 절차·방법'],
-  ['ko-rights', '7. 정보주체의 권리'],
-  ['ko-security', '8. 안전성 확보조치'],
-  ['ko-cookie', '9. 쿠키 등 자동수집장치'],
-  ['ko-officer', '10. 개인정보 보호책임자'],
-  ['ko-remedy', '11. 권익침해 구제방법'],
-  ['ko-changes', '12. 처리방침 변경'],
+  ['ko-unique', '3. 고유식별정보 처리'],
+  ['ko-third', '4. 제3자 제공'],
+  ['ko-processor', '5. 처리 위탁'],
+  ['ko-transfer', '6. 국외 이전'],
+  ['ko-destroy', '7. 파기 절차·방법'],
+  ['ko-rights', '8. 정보주체의 권리'],
+  ['ko-security', '9. 안전성 확보조치'],
+  ['ko-cookie', '10. 쿠키 등 자동수집장치'],
+  ['ko-officer', '11. 보호책임자·담당 부서'],
+  ['ko-remedy', '12. 권익침해 구제방법'],
+  ['ko-changes', '13. 처리방침 변경'],
 ]
 
 const EN_TOC: [string, string][] = [
@@ -51,7 +56,24 @@ const EN_TOC: [string, string][] = [
 
 export default function PrivacyPolicyPage() {
   const draft = isDraft()
-  const officerLabel = [PRIVACY_OFFICER.title, PRIVACY_OFFICER.name].filter(Boolean).join(' ')
+  // 성명 / 직책 / 전화 / 전자우편 순으로 이어 붙입니다(빈 값은 건너뜀).
+  const contactRows: [string, string, string[]][] = [
+    [
+      '개인정보 보호책임자',
+      'Privacy officer',
+      [PRIVACY_OFFICER.name, PRIVACY_OFFICER.title, PRIVACY_OFFICER.phone, PRIVACY_OFFICER.email],
+    ],
+    [
+      '개인정보 보호담당자',
+      'Privacy manager',
+      [PRIVACY_MANAGER.name, PRIVACY_MANAGER.title, PRIVACY_MANAGER.phone, PRIVACY_MANAGER.email],
+    ],
+    [
+      '열람청구 접수·처리 부서',
+      'Department for access requests',
+      [PRIVACY_DEPARTMENT.name, PRIVACY_DEPARTMENT.phone, PRIVACY_DEPARTMENT.email],
+    ],
+  ]
 
   return (
     <main id='top' className='min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100'>
@@ -77,7 +99,7 @@ export default function PrivacyPolicyPage() {
           </h1>
           <p className='mt-2 text-xl font-semibold text-black'>Privacy Policy</p>
           <p className='mt-3 text-black'>
-            <strong>시행일:</strong> {EFFECTIVE_DATE || '확정 후 기재'}
+            <strong>시행일:</strong> <Value v={EFFECTIVE_DATE} />
           </p>
 
           <div className='mt-6'>
@@ -104,8 +126,9 @@ export default function PrivacyPolicyPage() {
       {draft && (
         <div className='border-y border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-100'>
           <p lang='ko' className='mx-auto max-w-6xl px-6 py-3 text-sm'>
-            <strong>초안</strong> — 확정되지 않은 내용입니다. <Pending /> 표시 항목은 담당자 지정과 내부 확인 후
-            기재됩니다.
+            <strong>초안</strong> — 확정되지 않은 내용입니다. <Value v='^파란색 바탕' />은 초안 통합본(2026-11-20)에서
+            반영한 내용으로 최종 검토가 남아 있고, <Pending /> 표시와 <Value v='~노란색 바탕' />은 추가 확인이
+            필요한 내용입니다.
           </p>
         </div>
       )}
@@ -133,6 +156,9 @@ export default function PrivacyPolicyPage() {
                 rows={PROCESSING.map((p) => [p.purpose, p.items, p.retention])}
               />
               <p>다만, 관계 법령에서 보존 기간을 정한 경우에는 해당 기간 동안 보관합니다.</p>
+              <p>
+                <strong>수집 방법:</strong> <Value v={COLLECTION_SOURCE} />
+              </p>
             </Section>
 
             <Section id='ko-sensitive' title='2. 민감정보의 처리'>
@@ -141,7 +167,13 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id='ko-third' title='3. 개인정보의 제3자 제공'>
+            <Section id='ko-unique' title='3. 고유식별정보의 처리'>
+              <p>
+                <Value v={UNIQUE_ID_INFO} />
+              </p>
+            </Section>
+
+            <Section id='ko-third' title='4. 개인정보의 제3자 제공'>
               {THIRD_PARTIES.length === 0 ? (
                 <p>
                   회사는 정보주체의 개인정보를 제1항의 목적 범위 내에서만 처리하며, 정보주체의 동의 또는 법률의
@@ -149,25 +181,31 @@ export default function PrivacyPolicyPage() {
                   제공하지 않습니다.
                 </p>
               ) : (
-                <Table
-                  head={['제공받는 자', '제공 목적', '제공 항목', '보유기간']}
-                  rows={THIRD_PARTIES.map((t) => [t.recipient, t.purpose, t.items, t.retention])}
-                />
+                <>
+                  <p>
+                    <Value v='^회사는 정보주체의 동의, 법률의 특별한 규정 등 「개인정보 보호법」 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.' />
+                  </p>
+                  <Table
+                    head={['제공받는 자', '제공 목적', '제공 항목', '보유기간']}
+                    rows={THIRD_PARTIES.map((t) => [t.recipient, t.purpose, t.items, t.retention])}
+                  />
+                </>
               )}
             </Section>
 
-            <Section id='ko-processor' title='4. 개인정보 처리업무의 위탁'>
+            <Section id='ko-processor' title='5. 개인정보 처리업무의 위탁'>
               <p>회사는 원활한 업무 처리를 위하여 다음과 같이 개인정보 처리업무를 위탁하고 있습니다.</p>
               <Table head={['수탁자', '위탁 업무']} rows={PROCESSORS.map((p) => [p.company, p.task])} />
               <p>
                 회사는 위탁계약 체결 시 「개인정보 보호법」 제26조에 따라 위탁업무 수행 목적 외 개인정보 처리
-                금지, 안전성 확보조치, 재위탁 제한, 수탁자에 대한 관리·감독 등을 문서에 명시하고, 수탁자가
-                개인정보를 안전하게 처리하는지 감독합니다. 위탁 업무의 내용이나 수탁자가 변경되면 이 처리방침을
-                통하여 공개합니다.
+                금지, 안전성 확보조치, 재위탁 제한, 수탁자에 대한 관리·감독
+                <Value v='^, 손해배상 등 책임에 관한 사항' />을 문서에 명시하고, 수탁자가 개인정보를 안전하게
+                처리하는지 감독합니다. 위탁 업무의 내용이나 수탁자가 변경되면 이 처리방침을 통하여{' '}
+                <Value v='^지체 없이' /> 공개합니다.
               </p>
             </Section>
 
-            <Section id='ko-transfer' title='5. 개인정보의 국외 이전'>
+            <Section id='ko-transfer' title='6. 개인정보의 국외 이전'>
               <p>회사는 다음과 같이 개인정보를 국외로 이전하고 있습니다.</p>
               {TRANSFERS.map((t, i) => (
                 <InfoList
@@ -186,11 +224,11 @@ export default function PrivacyPolicyPage() {
               <p>
                 정보주체는 개인정보의 국외 이전을 거부할 수 있습니다. 다만 홈페이지 접속 기록의 국외 이전을
                 거부하시는 경우 홈페이지 이용이 어려울 수 있으며, 이 경우 전화 또는 전자우편으로 문의하실 수
-                있습니다. 거부 요청은 제10항의 개인정보 보호책임자에게 하시면 됩니다.
+                있습니다. 거부 요청은 제11항의 개인정보 보호책임자에게 하시면 됩니다.
               </p>
             </Section>
 
-            <Section id='ko-destroy' title='6. 개인정보의 파기 절차 및 방법'>
+            <Section id='ko-destroy' title='7. 개인정보의 파기 절차 및 방법'>
               <ul className='list-disc space-y-1 pl-5'>
                 <li>
                   회사는 보유기간이 지나거나 처리 목적이 달성되는 등 개인정보가 불필요하게 되었을 때에는 지체 없이
@@ -201,15 +239,15 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id='ko-rights' title='7. 정보주체와 법정대리인의 권리·의무 및 행사방법'>
+            <Section id='ko-rights' title='8. 정보주체와 법정대리인의 권리·의무 및 행사방법'>
               <ul className='list-disc space-y-1 pl-5'>
                 <li>
                   정보주체는 회사에 대하여 언제든지 개인정보 열람, 정정·삭제, 처리정지 및 동의 철회를 요구할 수
                   있습니다.
                 </li>
                 <li>
-                  권리 행사는 서면, 전자우편 등으로 제10항의 개인정보 보호책임자에게 하실 수 있으며, 회사는 지체
-                  없이 조치합니다.
+                  권리 행사는 서면, <Value v='^전화,' /> 전자우편 등으로 제11항의 개인정보 보호책임자
+                  <Value v='^ 또는 담당 부서' />에 하실 수 있으며, 회사는 지체 없이 조치합니다.
                 </li>
                 <li>
                   권리 행사는 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수도 있습니다. 이 경우 위임장을
@@ -219,21 +257,30 @@ export default function PrivacyPolicyPage() {
                   다른 법령에서 수집 대상으로 명시된 개인정보는 삭제를 요구할 수 없으며, 법률에 특별한 규정이 있는
                   경우 등에는 처리정지 요구가 제한될 수 있습니다.
                 </li>
+                <li>
+                  <Value v='^회사는 권리 행사를 요구한 자가 본인이거나 정당한 대리인인지 확인합니다.' />
+                </li>
               </ul>
             </Section>
 
-            <Section id='ko-security' title='8. 개인정보의 안전성 확보조치'>
+            <Section id='ko-security' title='9. 개인정보의 안전성 확보조치'>
               <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 하고 있습니다.</p>
               <ul className='list-disc space-y-1 pl-5'>
-                <li>관리적 조치: 내부관리계획 수립·시행, 개인정보 취급 직원의 최소화 및 정기 교육</li>
                 <li>
-                  기술적 조치: 개인정보처리시스템 접근권한 관리, 접속기록 보관, 전송 구간 암호화, 보안 프로그램 설치
+                  관리적 조치: 내부관리계획 수립·시행, 개인정보 취급 직원의 최소화 및 정기 교육
+                  <Value v='^, 수탁자 관리·감독' />
+                </li>
+                <li>
+                  기술적 조치: 개인정보처리시스템 접근권한 관리
+                  <Value v='^ 및 접근 통제' />, 접속기록 보관
+                  <Value v='^ 및 위·변조 방지' />, 전송 구간 암호화, 보안 프로그램 설치
+                  <Value v='^·갱신' />, <Value v='^주민등록번호 등 고유식별정보의 암호화 저장' />
                 </li>
                 <li>물리적 조치: 문서·저장매체 보관 장소의 출입 통제</li>
               </ul>
             </Section>
 
-            <Section id='ko-cookie' title='9. 개인정보 자동 수집 장치의 설치·운영 및 거부'>
+            <Section id='ko-cookie' title='10. 개인정보 자동 수집 장치의 설치·운영 및 거부'>
               {USES_COOKIES ? (
                 <p>
                   <Pending /> 쿠키 사용 목적, 설치·운영 방법과 거부 방법을 기재합니다.
@@ -246,26 +293,28 @@ export default function PrivacyPolicyPage() {
               )}
             </Section>
 
-            <Section id='ko-officer' title='10. 개인정보 보호책임자'>
+            <Section
+              id='ko-officer'
+              title={
+                <>
+                  11. 개인정보 보호책임자
+                  <Value v='^ 및 담당 부서' />
+                </>
+              }
+            >
               <p>
                 회사는 개인정보 처리에 관한 업무를 총괄하고, 정보주체의 불만 처리와 피해 구제를 위하여 다음과
                 같이 개인정보 보호책임자를 지정하고 있습니다.
               </p>
-              <InfoList
-                rows={[
-                  ['개인정보 보호책임자', officerLabel],
-                  ['담당 부서', PRIVACY_OFFICER.department],
-                  ['전화', PRIVACY_OFFICER.phone],
-                  ['전자우편', PRIVACY_OFFICER.email],
-                ]}
-              />
+              <ContactList rows={contactRows.map(([ko, , parts]) => [ko, parts])} />
               <p>
                 정보주체는 회사의 서비스를 이용하면서 발생한 개인정보 보호 관련 문의, 불만 처리, 피해 구제 등을
-                개인정보 보호책임자에게 문의하실 수 있으며, 회사는 지체 없이 답변하고 처리합니다.
+                개인정보 보호책임자<Value v='^ 및 담당 부서' />에 문의하실 수 있으며, 회사는 지체 없이 답변하고
+                처리합니다.
               </p>
             </Section>
 
-            <Section id='ko-remedy' title='11. 권익침해 구제방법'>
+            <Section id='ko-remedy' title='12. 권익침해 구제방법'>
               <p>
                 정보주체는 개인정보 침해로 인한 구제를 받기 위하여 아래 기관에 분쟁 해결이나 상담 등을 신청할 수
                 있습니다.
@@ -281,10 +330,11 @@ export default function PrivacyPolicyPage() {
               />
             </Section>
 
-            <Section id='ko-changes' title='12. 개인정보 처리방침의 변경'>
+            <Section id='ko-changes' title='13. 개인정보 처리방침의 변경'>
               <p>
-                이 개인정보 처리방침은 {EFFECTIVE_DATE || <Pending />}부터 적용됩니다. 내용이 추가·삭제·수정되는
-                경우 변경 사항을 홈페이지를 통하여 공지합니다.
+                이 개인정보 처리방침은 <Value v={EFFECTIVE_DATE} />부터 적용됩니다. 내용이 추가·삭제·수정되는
+                경우 <Value v='^시행일 7일 전부터' /> 홈페이지를 통하여 공지합니다.{' '}
+                <Value v='^다만 정보주체의 권리에 중요한 변경이 있는 경우에는 30일 전부터 공지합니다.' />
               </p>
               {PREVIOUS_VERSIONS.length > 0 && (
                 <ul className='list-disc space-y-1 pl-5 text-sm'>
@@ -416,14 +466,7 @@ export default function PrivacyPolicyPage() {
             </Section>
 
             <Section id='officer' title='10) Privacy officer'>
-              <InfoList
-                rows={[
-                  ['Privacy officer', officerLabel],
-                  ['Department', PRIVACY_OFFICER.department],
-                  ['Telephone', PRIVACY_OFFICER.phone],
-                  ['E-mail', PRIVACY_OFFICER.email],
-                ]}
-              />
+              <ContactList rows={contactRows.map(([, en, parts]) => [en, parts])} />
             </Section>
 
             <Section id='changes' title='11) Changes'>
@@ -461,7 +504,7 @@ export default function PrivacyPolicyPage() {
 }
 
 /* ---------- Small presentational helpers ---------- */
-function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
+function Section({ id, title, children }: { id: string; title: React.ReactNode; children: React.ReactNode }) {
   return (
     <section id={id} className='scroll-mt-24'>
       <h2 className='mb-3 text-2xl font-bold tracking-tight text-slate-900 dark:text-white'>{title}</h2>
@@ -487,8 +530,68 @@ function Pending() {
   )
 }
 
+/** 값 표시: 빈 값은 [확인 필요], ~ 는 노란색(확인 필요), ^ 는 파란색(통합본 반영), | 로 부분별 지정 */
 function Value({ v }: { v: string }) {
-  return v.trim() ? <>{v}</> : <Pending />
+  if (!v.trim()) return <Pending />
+  return (
+    <>
+      {v.split('|').map((seg, i) => (
+        <Segment key={i} s={seg} />
+      ))}
+    </>
+  )
+}
+
+const MARK_STYLE = {
+  '~': 'rounded bg-amber-100 px-1 text-inherit dark:bg-amber-900/40 dark:text-amber-100',
+  '^': 'rounded bg-sky-100 px-1 text-inherit dark:bg-sky-900/50 dark:text-sky-100',
+} as const
+
+function Segment({ s }: { s: string }) {
+  const m = s.match(/^(\s*)([~^]?)([\s\S]*?)(\s*)$/)
+  if (!m) return <>{s}</>
+  const [, lead, mark, body, trail] = m
+  if (!mark) return <>{s}</>
+  // 공백으로 시작하는 본문(예: '^ 및 담당 부서')은 앞 공백을 바깥으로 빼서 표시합니다.
+  const inner = body.replace(/^\s+/, '')
+  const space = body.length !== inner.length ? ' ' : ''
+  if (!inner) return <Pending />
+  return (
+    <>
+      {lead}
+      {space}
+      <mark className={MARK_STYLE[mark as '~' | '^']}>{inner}</mark>
+      {trail}
+    </>
+  )
+}
+
+/** 연락처 목록: 각 행의 값들을 ' / ' 로 이어서 표시하고 빈 값은 건너뜁니다. */
+function ContactList({ rows }: { rows: [string, string[]][] }) {
+  return (
+    <dl className='grid grid-cols-1 gap-x-6 gap-y-1 rounded-xl border border-slate-200 bg-white p-4 text-sm sm:grid-cols-[12rem_1fr] sm:gap-y-2 dark:border-slate-800 dark:bg-slate-900/60'>
+      {rows.map(([label, parts]) => {
+        const shown = parts.filter((p) => p.trim())
+        return (
+          <div key={label} className='contents'>
+            <dt className='mt-2 font-semibold first:mt-0 sm:mt-0'>{label}</dt>
+            <dd className='break-words'>
+              {shown.length === 0 ? (
+                <Pending />
+              ) : (
+                shown.map((p, i) => (
+                  <span key={i}>
+                    {i > 0 && ' / '}
+                    <Value v={p} />
+                  </span>
+                ))
+              )}
+            </dd>
+          </div>
+        )
+      })}
+    </dl>
+  )
 }
 
 /** 항목명·값 목록 (휴대폰에서는 위아래로, 넓은 화면에서는 좌우로 배치) */
