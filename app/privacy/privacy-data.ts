@@ -12,9 +12,15 @@
 /** 시행일(YYYY-MM-DD). */
 export const EFFECTIVE_DATE = '2026-11-20' // 통합본 기재값. 사전 공지 기간(7일)과 맞는지 확인 필요
 
-/** 이전 처리방침 시행일. 변경 이력 표시에 사용합니다. */
-export const PREVIOUS_VERSIONS: { date: string; note: string }[] = [
-  { date: '2025-08-28', note: '영문 처리방침 최초 게시' },
+/** 최초 시행일(YYYY-MM-DD). */
+export const FIRST_EFFECTIVE_DATE = '2022-09-01'
+
+/** 변경 이력(오래된 순). href가 있으면 "보기" 링크를 표시합니다.
+ *  이전 처리방침 원문은 app/privacy/archive/<시행일>/page.tsx 에 그대로 보관합니다. */
+export const POLICY_HISTORY: { date: string; note: string; href?: string }[] = [
+  { date: '2022-09-01', note: '개인정보 처리방침 최초 제정·시행' }, // 원문 확보 시 archive 페이지 추가 후 href 기재
+  { date: '2025-08-28', note: '홈페이지 영문 처리방침(Privacy Policy) 게시', href: '/privacy/archive/2025-08-28' },
+  { date: '2026-11-20', note: '국문 처리방침 전면 개정(현행)' },
 ]
 
 /** 개인정보 보호책임자 (성명 또는 부서 중 하나와 연락처는 필수) */

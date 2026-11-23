@@ -736,8 +736,11 @@ export default function Home() {
             <a href='#leadership'>AMC Leadership</a>
             <a href='#team'>AMC Team</a>
             <a href='#contact'>Contact Us</a>
-            <Link href='/privacy' style={{ fontWeight: 700, color: 'var(--on-dark)' }}>
-              Privacy Policy
+            <Link href='/privacy' className='privacy-link' lang='ko'>
+              개인정보 처리방침
+            </Link>
+            <Link href='/consumer-protection' lang='ko'>
+              금융소비자보호
             </Link>
           </nav>
           <p className='legal'>

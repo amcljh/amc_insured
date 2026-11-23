@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import {
   EFFECTIVE_DATE,
-  PREVIOUS_VERSIONS,
+  FIRST_EFFECTIVE_DATE,
+  POLICY_HISTORY,
   PRIVACY_OFFICER,
   PRIVACY_MANAGER,
   PRIVACY_DEPARTMENT,
@@ -97,7 +98,16 @@ export default function PrivacyPolicyPage() {
           </h1>
           <p className='mt-2 text-xl font-semibold text-black'>Privacy Policy</p>
           <p className='mt-3 text-black'>
-            <strong>시행일:</strong> <Value v={EFFECTIVE_DATE} />
+            <strong>최초 시행</strong> {FIRST_EFFECTIVE_DATE}
+            <span aria-hidden className='mx-2'>
+              ·
+            </span>
+            <strong>현행 시행</strong> <Value v={EFFECTIVE_DATE} />
+          </p>
+          <p className='mt-1 text-sm text-black'>
+            <a href='#ko-changes' className='underline underline-offset-4 hover:no-underline'>
+              변경 이력 및 이전 처리방침 보기
+            </a>
           </p>
 
           <div className='mt-6'>
@@ -321,15 +331,46 @@ export default function PrivacyPolicyPage() {
                 경우 시행일 7일 전부터 홈페이지를 통하여 공지합니다.{' '}
                 다만 정보주체의 권리에 중요한 변경이 있는 경우에는 30일 전부터 공지합니다.
               </p>
-              {PREVIOUS_VERSIONS.length > 0 && (
-                <ul className='list-disc space-y-1 pl-5 text-sm'>
-                  {PREVIOUS_VERSIONS.map((v) => (
-                    <li key={v.date}>
-                      {v.date}: {v.note}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <h3 className='pt-2 text-lg font-semibold text-slate-900 dark:text-white'>변경 이력</h3>
+              <div className='overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800'>
+                <table className='w-full min-w-[28rem] border-collapse bg-white text-left text-sm dark:bg-slate-900/60'>
+                  <thead className='bg-slate-100 dark:bg-slate-800'>
+                    <tr>
+                      <th scope='col' className='px-4 py-2.5 font-semibold'>
+                        시행일
+                      </th>
+                      <th scope='col' className='px-4 py-2.5 font-semibold'>
+                        내용
+                      </th>
+                      <th scope='col' className='px-4 py-2.5 font-semibold'>
+                        이전 처리방침
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...POLICY_HISTORY].reverse().map((v) => (
+                      <tr key={v.date} className='border-t border-slate-200 align-top dark:border-slate-800'>
+                        <td className='whitespace-nowrap px-4 py-2.5'>{v.date}</td>
+                        <td className='px-4 py-2.5'>{v.note}</td>
+                        <td className='px-4 py-2.5'>
+                          {v.date === EFFECTIVE_DATE ? (
+                            '현행'
+                          ) : v.href ? (
+                            <Link
+                              href={v.href}
+                              className='font-medium text-blue-700 underline underline-offset-4 hover:text-blue-800 dark:text-sky-400'
+                            >
+                              보기
+                            </Link>
+                          ) : (
+                            '-'
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </Section>
           </article>
 
@@ -458,6 +499,13 @@ export default function PrivacyPolicyPage() {
               <p>
                 We may update this Policy from time to time. We will post updates on this page with a new effective
                 date.
+              </p>
+              <p>
+                First effective: {FIRST_EFFECTIVE_DATE}. Version history and previous versions are listed in{' '}
+                <a href='#ko-changes' className='underline underline-offset-4'>
+                  Korean section 13
+                </a>
+                .
               </p>
             </Section>
           </article>
