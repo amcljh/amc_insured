@@ -143,3 +143,11 @@ export function teamId(team: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
 }
+
+/** 하단 회사 정보 — 출처: 사업자등록증(영등포세무서, 2024-09-26 발급) */
+export const COMPANY_INFO = {
+  nameKo: '㈜에이엠씨손해보험중개',
+  ceo: '이장한',
+  bizRegNo: '507-88-02190',
+  addressKo: '서울특별시 영등포구 국제금융로 70, 1402호(여의도동, 미원빌딩)',
+}

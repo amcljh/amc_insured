@@ -7,7 +7,7 @@ import { CopyEmail } from '../components/CopyEmail/CopyEmail'
 import { ScrollEffects } from '../components/ScrollEffects/ScrollEffects'
 import { NoticeBar } from '../components/NoticeBar/NoticeBar'
 import { AMC_AIR_NOTICE, isBannerActive } from './notice/notices'
-import { ADJUSTERS, INSURERS, LEADERSHIP, REINSURERS, TEAMS, teamId, type Company, type Member } from './site-data'
+import { ADJUSTERS, INSURERS, LEADERSHIP, REINSURERS, TEAMS, teamId, type Company, type Member, COMPANY_INFO } from './site-data'
 import './home.css'
 
 const serif = Source_Serif_4({
@@ -743,6 +743,9 @@ export default function Home() {
           <p className='legal'>
             <span className='corp'>
               AMC Insured Co., Ltd. · <span lang='ko'>㈜에이엠씨손해보험중개</span>
+            </span>
+            <span className='biz' lang='ko'>
+              대표이사 {COMPANY_INFO.ceo} · 사업자등록번호 {COMPANY_INFO.bizRegNo} · {COMPANY_INFO.addressKo}
             </span>
             © {new Date().getFullYear()} AMC Insured Co., Ltd. All rights reserved.
           </p>
