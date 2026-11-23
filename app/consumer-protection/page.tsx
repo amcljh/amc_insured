@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { COMPANY_INFO } from '../site-data'
 import '../home.css'
 
 /* 금융소비자보호 안내
@@ -156,6 +157,9 @@ export default function ConsumerProtectionPage() {
           <p className='legal'>
             <span className='corp'>
               AMC Insured Co., Ltd. · <span lang='ko'>㈜에이엠씨손해보험중개</span>
+            </span>
+            <span className='biz' lang='ko'>
+              대표이사 {COMPANY_INFO.ceo} · 사업자등록번호 {COMPANY_INFO.bizRegNo} · {COMPANY_INFO.addressKo}
             </span>
             © {new Date().getFullYear()} AMC Insured Co., Ltd. All rights reserved.
           </p>
