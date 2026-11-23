@@ -241,6 +241,7 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
 .amc .site-foot a:hover{color:var(--on-dark);text-decoration:underline}
 .amc .site-foot .legal{flex-basis:100%;margin:0}
 .amc .site-foot .corp{display:block;margin-bottom:4px;color:var(--on-dark);font-weight:500}
+.amc .site-foot .biz{display:block;margin-bottom:4px}
 .amc [lang="ko"]{font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",sans-serif;word-break:keep-all}
 
 @media (max-width:900px){
